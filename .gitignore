@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/flightR/flightR/flightR.Android/obj
+/flightR/flightR/flightR.Android/bin
