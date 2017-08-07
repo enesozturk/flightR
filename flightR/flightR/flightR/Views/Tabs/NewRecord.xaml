@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="flightR.Views.Tabs.NewRecord"
              Title="New Record">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Large"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="New Record Page!" />
+            <Label x:Name="lblLat" Text="Lat: 0.000000"></Label>
+            <Label x:Name="lblLong" Text="Long: 0.000000"></Label>
+            <Button Text="Get Position" Clicked="getPositionButton_Click"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

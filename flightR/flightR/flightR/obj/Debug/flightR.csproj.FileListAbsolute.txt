@@ -16,3 +16,9 @@ C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.dll
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.pdb
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Tabs.Settings.xaml.g.cs
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.dll
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.dll
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.pdb
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.xml
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.pdb
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.xml
