@@ -3,7 +3,12 @@
 ################################################################################
 
 /flightR/flightR/flightR.Android/obj
-/flightR/flightR/flightR.Android/obj
+/flightR/flightR/flightR.Android/bin
 /flightR/flightR/flightR.iOS/bin
 /flightR/flightR/flightR.iOS/obj
-/flightR/flightR/flightR.Android/bin
+/fligtRWebAPI/fligtRWebAPI/obj/Debug
+/fligtRWebAPI/fligtRWebAPI/bin
+/fligtRWebAPI/Data/obj/Debug
+/fligtRWebAPI/Model/obj/Debug
+/fligtRWebAPI/Repo/obj/Debug
+/fligtRWebAPI/packages
