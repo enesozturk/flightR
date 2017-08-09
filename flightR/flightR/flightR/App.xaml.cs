@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using flightR;
-using flightR.Views;
+using flightR.Views;    
 
 using Xamarin.Forms;
+using Java.Util;
 
 namespace flightR
 {
     public partial class App : Application
     {
+        public static string DbName { get; set; } = "flightRDB.db3";
         public App()
         {
             InitializeComponent();

@@ -8,7 +8,6 @@ C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Platform.pdb
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Xaml.xml
-C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.App.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Tabs.Profile.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Tabs.NewRecord.xaml.g.cs
@@ -22,3 +21,8 @@ C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.xml
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.pdb
 C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.xml
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Mono.Android.dll
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Mono.Android.pdb
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\Mono.Android.xml
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\obj\Debug\flightR.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Projects\Dotnet\flightR\flightR\flightR\flightR\bin\Debug\SQLite.Net.dll

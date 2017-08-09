@@ -15,7 +15,9 @@
         <StackLayout>
             <Label x:Name="lblLat" Text="Lat: 0.000000"></Label>
             <Label x:Name="lblLong" Text="Long: 0.000000"></Label>
-            <Button Text="Get Position" Clicked="getPositionButton_Click"></Button>
+            <Label x:Name="lblAlt" Text="Alt: 0.000000"></Label>
+            <Label x:Name="lblCounter" Text="Counter: "></Label>
+            <Button Text="Start Record" x:Name="btnRecord"></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
