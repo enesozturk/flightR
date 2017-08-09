@@ -32,6 +32,28 @@ namespace flightR.Views.Tabs
             RefreshData();
         }
 
+        public async void onMenuDelete(object sender, EventArgs e)
+        {
+            var selectedMenuItem = (MenuItem)sender;
+            var selectedRecord = manager.Get(Convert.ToInt32(selectedMenuItem
+               .CommandParameter.ToString()));
+            bool isOk = await DisplayAlert("UYARI", selectedRecord.Latitude + " silinecek", "OK", "CANCEL");
+            if (isOk)
+            {
+                int isDeleted = manager.Delete(Convert.ToInt32(selectedMenuItem.CommandParameter.ToString()));
+                if (isDeleted > 0)
+                {
+                    DisplayAlert("BAŞARILI", "SİLİNDİ", "OK");
+                    RefreshData();
+                }
+                else
+                {
+                    DisplayAlert("BAŞARISIZ", "SİLİNEMEDİ", "OK");
+                }
+            }
+
+        }
+
         private void RefreshData()
         {
             List<FlightRecord> studentList = new List<FlightRecord>();

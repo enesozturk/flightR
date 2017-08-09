@@ -12,15 +12,24 @@
         <StackLayout>
             <ListView x:Name="lstStudents" ItemsSource="{Binding .}" IsPullToRefreshEnabled="True"
               Refreshing="onMenuRefresh">
+                <ListView.Header>
+                    <StackLayout Orientation="Horizontal"
+                                 VerticalOptions="Center"
+                                 HorizontalOptions="Center">
+                        <Label Text="Your Records"
+                                TextColor="Olive"
+                                BackgroundColor="Red" />
+                    </StackLayout>
+                </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding Latitude}" Detail="{Binding Altitude}">
 
                             <TextCell.ContextActions>
                                 <MenuItem CommandParameter="{Binding Id}" Text="Sil" 
-                          IsDestructive="True" ></MenuItem>
-                                <MenuItem CommandParameter="{Binding Id}" Text="Detay"
-                         ></MenuItem>
+                          IsDestructive="True" Clicked="onMenuDelete"></MenuItem>
+                                <!--<MenuItem CommandParameter="{Binding Id}" Text="Detay"
+                          Clicked="onMenuDetail"></MenuItem>-->
                             </TextCell.ContextActions>
 
                         </TextCell>

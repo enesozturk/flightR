@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "fligtRWebAPI", "fligtRWebAPI\fligtRWebAPI.csproj", "{48C25AB1-6632-4D94-91FE-05F28BD528A3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{7FB9F4BC-EEF8-4D51-B187-E5AE9CC8DB53}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{52E9068F-4F38-432F-8B56-A449E85519F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{EDADE288-1079-4D1C-AF03-D2598F5FEAC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "Model\Model.csproj", "{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repo", "Repo\Repo.csproj", "{FAF9A69A-128A-4091-86C6-9743C34526F0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{48C25AB1-6632-4D94-91FE-05F28BD528A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48C25AB1-6632-4D94-91FE-05F28BD528A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48C25AB1-6632-4D94-91FE-05F28BD528A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48C25AB1-6632-4D94-91FE-05F28BD528A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDADE288-1079-4D1C-AF03-D2598F5FEAC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDADE288-1079-4D1C-AF03-D2598F5FEAC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDADE288-1079-4D1C-AF03-D2598F5FEAC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDADE288-1079-4D1C-AF03-D2598F5FEAC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAF9A69A-128A-4091-86C6-9743C34526F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAF9A69A-128A-4091-86C6-9743C34526F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAF9A69A-128A-4091-86C6-9743C34526F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAF9A69A-128A-4091-86C6-9743C34526F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EDADE288-1079-4D1C-AF03-D2598F5FEAC5} = {52E9068F-4F38-432F-8B56-A449E85519F0}
+		{7BD26CB1-8C74-4929-BBAF-A0503F76DBCE} = {52E9068F-4F38-432F-8B56-A449E85519F0}
+		{FAF9A69A-128A-4091-86C6-9743C34526F0} = {52E9068F-4F38-432F-8B56-A449E85519F0}
+	EndGlobalSection
+EndGlobal
