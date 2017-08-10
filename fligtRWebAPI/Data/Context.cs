@@ -6,7 +6,7 @@ namespace Data
     public class Context : DbContext
     {
         public Context()
-            : base("name=Connection")
+            : base("name=flighREntities")
         {
             //Database.SetInitializer<DbContext>(
             //    new CreateDatabaseIfNotExists<DbContext>());
