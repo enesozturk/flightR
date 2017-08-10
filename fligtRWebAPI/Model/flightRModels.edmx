@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="flighRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="flighRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="Id" />
@@ -66,11 +66,23 @@
             <End Role="List" EntitySet="List" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="flighRModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="flighREntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="List" EntityType="flighRModel.List" />
+          <EntitySet Name="Record" EntityType="flighRModel.Record" />
+          <EntitySet Name="RecordList" EntityType="flighRModel.RecordList" />
+          <AssociationSet Name="FK_List_Record" Association="flighRModel.FK_List_Record">
+            <End Role="Record" EntitySet="Record" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_List_RecordList" Association="flighRModel.FK_List_RecordList">
+            <End Role="RecordList" EntitySet="RecordList" />
+            <End Role="List" EntitySet="List" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="Id" />
@@ -78,8 +90,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RecordListId" Type="Int32" Nullable="false" />
           <Property Name="RecordId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Record" Relationship="Self.FK_List_Record" FromRole="List" ToRole="Record" />
-          <NavigationProperty Name="RecordList" Relationship="Self.FK_List_RecordList" FromRole="List" ToRole="RecordList" />
+          <NavigationProperty Name="Record" Relationship="flighRModel.FK_List_Record" FromRole="List" ToRole="Record" />
+          <NavigationProperty Name="RecordList" Relationship="flighRModel.FK_List_RecordList" FromRole="List" ToRole="RecordList" />
         </EntityType>
         <EntityType Name="Record">
           <Key>
@@ -89,7 +101,7 @@
           <Property Name="Latitude" Type="Double" Nullable="false" />
           <Property Name="Longitude" Type="Double" Nullable="false" />
           <Property Name="Altitude" Type="Double" Nullable="false" />
-          <NavigationProperty Name="List" Relationship="Self.FK_List_Record" FromRole="Record" ToRole="List" />
+          <NavigationProperty Name="List" Relationship="flighRModel.FK_List_Record" FromRole="Record" ToRole="List" />
         </EntityType>
         <EntityType Name="RecordList">
           <Key>
@@ -97,11 +109,11 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="List" Relationship="Self.FK_List_RecordList" FromRole="RecordList" ToRole="List" />
+          <NavigationProperty Name="List" Relationship="flighRModel.FK_List_RecordList" FromRole="RecordList" ToRole="List" />
         </EntityType>
         <Association Name="FK_List_Record">
-          <End Role="Record" Type="Self.Record" Multiplicity="1" />
-          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <End Type="flighRModel.Record" Role="Record" Multiplicity="1" />
+          <End Type="flighRModel.List" Role="List" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Record">
               <PropertyRef Name="Id" />
@@ -112,8 +124,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_List_RecordList">
-          <End Role="RecordList" Type="Self.RecordList" Multiplicity="1" />
-          <End Role="List" Type="Self.List" Multiplicity="*" />
+          <End Type="flighRModel.RecordList" Role="RecordList" Multiplicity="1" />
+          <End Type="flighRModel.List" Role="List" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RecordList">
               <PropertyRef Name="Id" />
@@ -123,19 +135,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="flighREntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="List" EntityType="Self.List" />
-          <EntitySet Name="Record" EntityType="Self.Record" />
-          <EntitySet Name="RecordList" EntityType="Self.RecordList" />
-          <AssociationSet Name="FK_List_Record" Association="Self.FK_List_Record">
-            <End Role="Record" EntitySet="Record" />
-            <End Role="List" EntitySet="List" />
-          </AssociationSet>
-          <AssociationSet Name="FK_List_RecordList" Association="Self.FK_List_RecordList">
-            <End Role="RecordList" EntitySet="RecordList" />
-            <End Role="List" EntitySet="List" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -145,27 +144,27 @@
           <EntitySetMapping Name="List">
             <EntityTypeMapping TypeName="flighRModel.List">
               <MappingFragment StoreEntitySet="List">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RecordListId" ColumnName="RecordListId" />
                 <ScalarProperty Name="RecordId" ColumnName="RecordId" />
+                <ScalarProperty Name="RecordListId" ColumnName="RecordListId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Record">
             <EntityTypeMapping TypeName="flighRModel.Record">
               <MappingFragment StoreEntitySet="Record">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RecordList">
             <EntityTypeMapping TypeName="flighRModel.RecordList">
               <MappingFragment StoreEntitySet="RecordList">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

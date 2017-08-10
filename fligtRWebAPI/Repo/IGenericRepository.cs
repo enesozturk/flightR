@@ -7,10 +7,7 @@ namespace Repo
 {
     public interface IGenericRepository<TEntity> where TEntity : class
     {
-        IEnumerable Get(
-            Expression<Func<TEntity, bool>> filter = null,
-            Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null,
-            string includeProperties = "");
+        IEnumerable Get(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = "");
         TEntity GetById(object id);
         void Insert(TEntity entity);
         void Delete(object id);
