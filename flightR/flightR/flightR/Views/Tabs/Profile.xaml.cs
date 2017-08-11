@@ -19,7 +19,7 @@ namespace flightR.Views.Tabs
         public Profile()
         {
             InitializeComponent();
-
+             
             List<FlightRecord> records = new List<FlightRecord>();
             manager = new SQLiteManager();
             records = manager.GetAll().ToList();
