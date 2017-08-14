@@ -1,47 +1,44 @@
 ﻿using flightR.Models;
 using flightR.Utils;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace flightR.Data
 {
     public class Recorder
     {
-        public static IList<FlightRecord> records { get; set; }
+        public static IList<Record> records { get; set; }
 
         static Recorder()
         {
-            records = new ObservableCollection<FlightRecord>()
+            records = new ObservableCollection<Record>()
             {
-                new FlightRecord()
+                new Record()
                 {
                     Altitude = 23.122334,
                     Latitude = 54.235413,
                     Longitude = 12.344565
                 },
-                new FlightRecord()
+                new Record()
                 {
                     Altitude = 23.122334,
                     Latitude = 55.235413,
                     Longitude = 12.344565
                 },
-                new FlightRecord()
+                new Record()
                 {
                     Altitude = 23.122334,
                     Latitude = 56.235413,
                     Longitude = 12.344565
                 },
-                new FlightRecord()
+                new Record()
                 {
                     Altitude = 23.122334,
                     Latitude = 57.235413,
                     Longitude = 12.344565
                 },
-                new FlightRecord()
+                new Record()
                 {
                     Altitude = 23.122334,
                     Latitude = 58.235413,
@@ -50,21 +47,21 @@ namespace flightR.Data
             };
         }
 
-        public static ObservableCollection<Grouping<double,FlightRecord>> BindingWithGrouping()
+        public static ObservableCollection<Grouping<double,Record>> BindingWithGrouping()
         {
             var result = records;
 
-            var list = new ObservableCollection<Grouping<double, FlightRecord>>
+            var list = new ObservableCollection<Grouping<double, Record>>
                 (result.
                 OrderBy(c => c.Altitude).
                 GroupBy(c=>c.Longitude).
-                Select(k=>new Grouping<double, FlightRecord>(k.Key, k))
+                Select(k=>new Grouping<double, Record>(k.Key, k))
                 );
 
             return list;
         }
 
-        public static void AddNewRecord(FlightRecord newRecord)
+        public static void AddNewRecord(Record newRecord)
         {
             records.Add(newRecord);
         }

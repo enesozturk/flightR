@@ -10,15 +10,15 @@
 
     <ContentPage.Content>
         <StackLayout>
+            <Button Text="Get" Clicked="getRecords"></Button>
             <ListView x:Name="lstStudents" ItemsSource="{Binding .}" IsPullToRefreshEnabled="True"
               Refreshing="onMenuRefresh">
                 <ListView.Header>
                     <StackLayout Orientation="Horizontal"
                                  VerticalOptions="Center"
                                  HorizontalOptions="Center">
-                        <Label Text="Your Records"
-                                TextColor="Olive"
-                                BackgroundColor="Red" />
+                        <Label Text="Your Records" FontAttributes="Bold" FontSize="Medium"
+                                TextColor="Olive" />
                     </StackLayout>
                 </ListView.Header>
                 <ListView.ItemTemplate>
@@ -33,7 +33,6 @@
                             </TextCell.ContextActions>
 
                         </TextCell>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
