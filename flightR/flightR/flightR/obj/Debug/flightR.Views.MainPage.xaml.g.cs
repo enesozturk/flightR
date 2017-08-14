@@ -11,8 +11,8 @@
 namespace flightR.Views {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\Dotnet\\flightR\\flightR\\flightR\\flightR\\Views\\MainP" +
-        "age.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\flightR\\flightR\\flightR\\flightR\\flightR\\Views\\Main" +
+        "Page.xaml")]
     public partial class MainPage : global::Xamarin.Forms.TabbedPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

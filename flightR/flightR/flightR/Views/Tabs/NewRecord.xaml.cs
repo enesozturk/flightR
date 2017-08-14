@@ -1,14 +1,9 @@
-﻿using flightR.Data;
-using flightR.Helper;
-using flightR.Models;
-using flightR.Utils;
+﻿using flightR.Models;
+using flightR.Provider;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -21,57 +16,65 @@ namespace flightR.Views.Tabs
     {
         public int timerCounter { get; set; } = 0; //for text
         public int buttonCounter { get; set; } = 0; // to stop
+        public Position position { get; set; }
 
-        public List<FlightRecord> newList;
+        public List<Record> newList;
 
         public NewRecord()
         {
             InitializeComponent();
-            btnRecord.Clicked += BtnRecord_Clicked;
         }
 
-        private void BtnRecord_Clicked(object sender, EventArgs e)
+        private async void btnRecord(object sender, EventArgs e)
         {
-            buttonCounter++;
-            Device.StartTimer(TimeSpan.FromSeconds(1), () =>
+            //Navigation.PushModalAsync(new Insert());
+            await GetCurrentLocation();
+            await Write1();
+            await Write2();
+
+            Record newRecord = new Record
             {
-                if (buttonCounter % 2 == 0)
-                {
-                    return false;
-                }
-                else
-                {
-                    if (timerCounter == 5)
-                    {
-                        Task.Run(async () =>
-                        {
-                            var position = await GetPosition();
-                            SQLiteManager manager = new SQLiteManager();
-                            FlightRecord record = new FlightRecord();
-                            record.Altitude = position.Altitude;
-                            record.Latitude = position.Latitude;
-                            record.Longitude = position.Longitude;
+                Latitude = 2.222,
+                Longitude = 3.333,
+                Altitude = 1.111
+            };
 
-                            int isInserted = manager.Insert(record);
-                            if (isInserted > 0) DisplayAlert("Added Record", "Latitude: " + record.Latitude, "Ok");
-                        });
-                    }
-                    timerCounter++;
-                    lblCounter.Text = timerCounter.ToString();
-                    return true; // True = Repeat again, False = Stop the timer
-                }
-            });
+            ServiceManager manager = new ServiceManager();
+            MobileResult mobileResult = await Task.Run(() => manager.Insert(newRecord));
+
+            if (mobileResult.Result)
+            {
+                await DisplayAlert("Success", mobileResult.Message, "Ok", "Cancel");
+                Navigation.PopModalAsync();
+            }
+            else
+            {
+                DisplayAlert("Error", mobileResult.Message, "Ok", "Cancel");
+            }
         }
-        
-        public async Task<Position> GetPosition()
+
+        private async Task Write1()
         {
-            Position position = null;
+            lblLat.Text = "Write1";
+        }
+
+        private async Task Write2()
+        {
+            lblLong.Text = "Write2";
+        }
+
+        private async Task GetCurrentLocation()
+        {
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 20;
 
-            position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
-            return position;
+            lblLat.Text = position.Latitude.ToString();
+            lblLong.Text = position.Longitude.ToString();
+            lblAlt.Text = position.Altitude.ToString();
+
+            position = position;
         }
     }
 }

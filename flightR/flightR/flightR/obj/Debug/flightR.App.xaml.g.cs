@@ -11,7 +11,7 @@
 namespace flightR {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\Dotnet\\flightR\\flightR\\flightR\\flightR\\App.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\flightR\\flightR\\flightR\\flightR\\flightR\\App.xaml")]
     public partial class App : global::Xamarin.Forms.Application {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

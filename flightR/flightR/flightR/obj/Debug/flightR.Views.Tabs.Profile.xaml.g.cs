@@ -11,8 +11,8 @@
 namespace flightR.Views.Tabs {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\Dotnet\\flightR\\flightR\\flightR\\flightR\\Views\\Tabs\\" +
-        "Profile.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("C:\\Users\\Asus\\Desktop\\Projects\\flightR\\flightR\\flightR\\flightR\\flightR\\Views\\Tabs" +
+        "\\Profile.xaml")]
     public partial class Profile : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "0.0.0.0")]

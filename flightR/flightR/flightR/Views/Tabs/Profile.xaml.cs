@@ -1,12 +1,7 @@
-﻿using flightR.Data;
-using flightR.Helper;
-using flightR.Models;
+﻿using flightR.Models;
+using flightR.Provider;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,14 +10,16 @@ namespace flightR.Views.Tabs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Profile : ContentPage
     {
-        SQLiteManager manager;
+        ServiceManager service = new ServiceManager();
         public Profile()
         {
             InitializeComponent();
-             
-            List<FlightRecord> records = new List<FlightRecord>();
-            manager = new SQLiteManager();
-            records = manager.GetAll().ToList();
+        }
+
+        public async void getRecords(object sender, EventArgs e)
+        {
+            IEnumerable<Record> records = new List<Record>();
+            records = await service.GetAll();
 
             lstStudents.BindingContext = records;
         }
@@ -34,30 +31,13 @@ namespace flightR.Views.Tabs
 
         public async void onMenuDelete(object sender, EventArgs e)
         {
-            var selectedMenuItem = (MenuItem)sender;
-            var selectedRecord = manager.Get(Convert.ToInt32(selectedMenuItem
-               .CommandParameter.ToString()));
-            bool isOk = await DisplayAlert("UYARI", selectedRecord.Latitude + " silinecek", "OK", "CANCEL");
-            if (isOk)
-            {
-                int isDeleted = manager.Delete(Convert.ToInt32(selectedMenuItem.CommandParameter.ToString()));
-                if (isDeleted > 0)
-                {
-                    DisplayAlert("BAŞARILI", "SİLİNDİ", "OK");
-                    RefreshData();
-                }
-                else
-                {
-                    DisplayAlert("BAŞARISIZ", "SİLİNEMEDİ", "OK");
-                }
-            }
 
         }
 
-        private void RefreshData()
+        private async void RefreshData()
         {
-            List<FlightRecord> studentList = new List<FlightRecord>();
-            studentList = manager.GetAll().ToList();
+            IEnumerable<Record> studentList = new List<Record>();
+            studentList = await service.GetAll();
             lstStudents.BindingContext = studentList;
             lstStudents.IsRefreshing = false;
         }

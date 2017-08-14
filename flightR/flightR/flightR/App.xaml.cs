@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using flightR;
-using flightR.Views;    
+﻿using flightR.Views;
 
 using Xamarin.Forms;
-using Java.Util;
 
 namespace flightR
 {
@@ -17,7 +11,7 @@ namespace flightR
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
