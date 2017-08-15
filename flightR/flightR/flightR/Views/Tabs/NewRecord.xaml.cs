@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Maps;
 using Xamarin.Forms.Xaml;
 
 namespace flightR.Views.Tabs
@@ -16,13 +17,24 @@ namespace flightR.Views.Tabs
     {
         public int timerCounter { get; set; } = 0; //for text
         public int buttonCounter { get; set; } = 0; // to stop
-        public Position position { get; set; }
+        public Plugin.Geolocator.Abstractions.Position position { get; set; }
 
         public List<Record> newList;
 
         public NewRecord()
         {
             InitializeComponent();
+        }
+
+        void CreateMap()
+        {
+            Map map = new Map()
+            {
+                HasScrollEnabled = true,
+                HasZoomEnabled = true,
+                MapType = MapType.Hybrid
+            };
+
         }
 
         private async void btnRecord(object sender, EventArgs e)
@@ -55,12 +67,12 @@ namespace flightR.Views.Tabs
 
         private async Task Write1()
         {
-            lblLat.Text = "Write1";
+            //lblLat.Text = "Write1";
         }
 
         private async Task Write2()
         {
-            lblLong.Text = "Write2";
+            //lblLong.Text = "Write2";
         }
 
         private async Task GetCurrentLocation()
@@ -70,9 +82,9 @@ namespace flightR.Views.Tabs
 
             var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
 
-            lblLat.Text = position.Latitude.ToString();
-            lblLong.Text = position.Longitude.ToString();
-            lblAlt.Text = position.Altitude.ToString();
+            //lblLat.Text = position.Latitude.ToString();
+            //lblLong.Text = position.Longitude.ToString();
+            //lblAlt.Text = position.Altitude.ToString();
 
             position = position;
         }
