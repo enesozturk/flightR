@@ -9,9 +9,10 @@
 
 namespace Model
 {
+    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-
+    
     public partial class flighREntities : DbContext
     {
         public flighREntities()
@@ -27,5 +28,7 @@ namespace Model
         public virtual DbSet<List> List { get; set; }
         public virtual DbSet<Record> Record { get; set; }
         public virtual DbSet<RecordList> RecordList { get; set; }
+        public virtual DbSet<Point> Point { get; set; }
+        public virtual DbSet<PointList> PointList { get; set; }
     }
 }

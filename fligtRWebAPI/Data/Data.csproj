@@ -52,6 +52,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="Migrations\201708161119171_InitialCreate.cs" />
+    <Compile Include="Migrations\201708161119171_InitialCreate.Designer.cs">
+      <DependentUpon>201708161119171_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161126223_addPoint.cs" />
+    <Compile Include="Migrations\201708161126223_addPoint.Designer.cs">
+      <DependentUpon>201708161126223_addPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161159526_changes1.cs" />
+    <Compile Include="Migrations\201708161159526_changes1.Designer.cs">
+      <DependentUpon>201708161159526_changes1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +76,17 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201708161119171_InitialCreate.resx">
+      <DependentUpon>201708161119171_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161126223_addPoint.resx">
+      <DependentUpon>201708161126223_addPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161159526_changes1.resx">
+      <DependentUpon>201708161159526_changes1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

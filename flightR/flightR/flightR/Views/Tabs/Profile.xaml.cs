@@ -2,6 +2,8 @@
 using flightR.Provider;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,35 +13,52 @@ namespace flightR.Views.Tabs
     public partial class Profile : ContentPage
     {
         ServiceManager service = new ServiceManager();
+        readonly ObservableCollection<Record> model = new ObservableCollection<Record>();
+
         public Profile()
         {
             InitializeComponent();
+            loadData();
         }
 
-        public async void getRecords(object sender, EventArgs e)
+        public async void loadData()
         {
-            IEnumerable<Record> records = new List<Record>();
-            records = await service.GetAll();
-
-            lstStudents.BindingContext = records;
+            this.IsBusy = true;
+            try
+            {
+                model.Clear();
+                var records = await service.GetAll();
+                foreach (Record item in records)
+                    model.Add(item);
+                
+                lbl.Text = model.Count.ToString();
+                recordList.ItemsSource = model;
+            }
+            finally
+            {
+                this.IsBusy = false;
+            }
         }
 
-        public void onMenuRefresh(object sender, EventArgs e)
+        public void getRecords(object sender, EventArgs e)
         {
-            RefreshData();
+            loadData();
         }
 
-        public async void onMenuDelete(object sender, EventArgs e)
+        public void onRefresh(object sender, EventArgs e)
         {
-
+            loadData();
         }
 
-        private async void RefreshData()
+        public async void onSelected(object sender, EventArgs e)
         {
-            IEnumerable<Record> studentList = new List<Record>();
-            studentList = await service.GetAll();
-            lstStudents.BindingContext = studentList;
-            lstStudents.IsRefreshing = false;
+            //
         }
+
+        public async void onDelete(object sender, EventArgs e)
+        {
+            //
+        }
+
     }
 }

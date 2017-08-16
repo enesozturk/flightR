@@ -11,6 +11,19 @@ namespace Repo
         private static readonly Context context = new Context();
 
         private GenericRepository<Record> _record;
+        private GenericRepository<Point> _point;
+
+        public GenericRepository<Point> PointRepository
+        {
+            get
+            {
+                if(this._point == null)
+                {
+                    this._point = new GenericRepository<Point>(context);
+                }
+                return _point;
+            }
+        }
 
         public GenericRepository<Record> RecordRepository
         {

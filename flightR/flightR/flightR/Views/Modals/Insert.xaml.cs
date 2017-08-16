@@ -21,7 +21,7 @@ namespace flightR.Views.Modals
 
         private async void onSave(object sender, EventArgs e)
         {
-            Record newRecord = new Record
+            Models.Point newRecord = new Models.Point
             {
                 Latitude = Convert.ToDouble(txtLatitude.Text),
                 Longitude = Convert.ToDouble(txtLongitude.Text),
