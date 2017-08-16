@@ -8,37 +8,37 @@ namespace flightR.Data
 {
     public class Recorder
     {
-        public static IList<Record> records { get; set; }
+        public static IList<Point> records { get; set; }
 
         static Recorder()
         {
-            records = new ObservableCollection<Record>()
+            records = new ObservableCollection<Point>()
             {
-                new Record()
+                new Point()
                 {
                     Altitude = 23.122334,
                     Latitude = 54.235413,
                     Longitude = 12.344565
                 },
-                new Record()
+                new Point()
                 {
                     Altitude = 23.122334,
                     Latitude = 55.235413,
                     Longitude = 12.344565
                 },
-                new Record()
+                new Point()
                 {
                     Altitude = 23.122334,
                     Latitude = 56.235413,
                     Longitude = 12.344565
                 },
-                new Record()
+                new Point()
                 {
                     Altitude = 23.122334,
                     Latitude = 57.235413,
                     Longitude = 12.344565
                 },
-                new Record()
+                new Point()
                 {
                     Altitude = 23.122334,
                     Latitude = 58.235413,
@@ -47,21 +47,21 @@ namespace flightR.Data
             };
         }
 
-        public static ObservableCollection<Grouping<double,Record>> BindingWithGrouping()
+        public static ObservableCollection<Grouping<double,Point>> BindingWithGrouping()
         {
             var result = records;
 
-            var list = new ObservableCollection<Grouping<double, Record>>
+            var list = new ObservableCollection<Grouping<double, Point>>
                 (result.
                 OrderBy(c => c.Altitude).
                 GroupBy(c=>c.Longitude).
-                Select(k=>new Grouping<double, Record>(k.Key, k))
+                Select(k=>new Grouping<double, Point>(k.Key, k))
                 );
 
             return list;
         }
 
-        public static void AddNewRecord(Record newRecord)
+        public static void AddNewRecord(Point newRecord)
         {
             records.Add(newRecord);
         }

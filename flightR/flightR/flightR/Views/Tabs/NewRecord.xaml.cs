@@ -19,7 +19,7 @@ namespace flightR.Views.Tabs
         public int buttonCounter { get; set; } = 0; // to stop
         public Plugin.Geolocator.Abstractions.Position position { get; set; }
 
-        public List<Record> newList;
+        public List<Models.Point> newList;
 
         public NewRecord()
         {
@@ -41,10 +41,8 @@ namespace flightR.Views.Tabs
         {
             //Navigation.PushModalAsync(new Insert());
             await GetCurrentLocation();
-            await Write1();
-            await Write2();
 
-            Record newRecord = new Record
+            Models.Point newRecord = new Models.Point
             {
                 Latitude = 2.222,
                 Longitude = 3.333,

@@ -1,5 +1,4 @@
 ﻿using flightR.Views;
-
 using Xamarin.Forms;
 
 namespace flightR

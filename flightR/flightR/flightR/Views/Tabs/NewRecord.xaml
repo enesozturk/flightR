@@ -31,9 +31,10 @@
                 Text="START RECORD">
             </Button>
             
-            <Label Text="Values 0"
-           HorizontalOptions="Center" />
-            
+            <Label Text="Speed"
+           HorizontalOptions="StartAndExpand" />
+            <Label Text="Altitude"
+           HorizontalOptions="StartAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>

@@ -10,6 +10,9 @@
         <EntityTypeShape EntityType="flighRModel.RecordList" Width="1.5" PointX="0.75" PointY="1.125" />
         <AssociationConnector Association="flighRModel.FK_List_Record" />
         <AssociationConnector Association="flighRModel.FK_List_RecordList" />
+        <EntityTypeShape EntityType="flighRModel.Point" Width="1.5" PointX="5.625" PointY="3.875" />
+        <EntityTypeShape EntityType="flighRModel.PointList" Width="1.5" PointX="3.375" PointY="4.25" />
+        <AssociationConnector Association="flighRModel.FK_Point_PointList" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

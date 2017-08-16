@@ -2,13 +2,18 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/flightR/flightR/flightR/bin
+/flightR/flightR/flightR/obj
 /flightR/flightR/flightR.Android/obj
 /flightR/flightR/flightR.Android/bin
 /flightR/flightR/flightR.iOS/bin
 /flightR/flightR/flightR.iOS/obj
-/fligtRWebAPI/fligtRWebAPI/obj/Debug
+/fligtRWebAPI/fligtRWebAPI/obj
 /fligtRWebAPI/fligtRWebAPI/bin
-/fligtRWebAPI/Data/obj/Debug
-/fligtRWebAPI/Model/obj/Debug
-/fligtRWebAPI/Repo/obj/Debug
+/fligtRWebAPI/Data/obj
+/fligtRWebAPI/Data/bin
+/fligtRWebAPI/Model/obj
+/fligtRWebAPI/Model/bin
+/fligtRWebAPI/Repo/obj
+/fligtRWebAPI/Repo/bin
 /fligtRWebAPI/packages

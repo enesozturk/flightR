@@ -17,7 +17,7 @@ namespace flightR.Provider
             return client;
         }
 
-        private async Task<MobileResult> Process(Record model, string procsType)
+        private async Task<MobileResult> Process(Point model, string procsType)
         {
             HttpClient client = await GetClient();
             var response = await client.PostAsync(Url + procsType, new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
@@ -26,26 +26,26 @@ namespace flightR.Provider
             return result;
         }
 
-        public async Task<IEnumerable<Record>> GetAll()
+        public async Task<IEnumerable<Point>> GetAll()
         {
             HttpClient client = await GetClient();
             var result = await client.GetStringAsync(Url + "getall");
             var mobileResult = JsonConvert.DeserializeObject<MobileResult>(result);
-            return JsonConvert.DeserializeObject<IEnumerable<Record>>
+            return JsonConvert.DeserializeObject<IEnumerable<Point>>
                 (mobileResult.Data.ToString());
         }
 
-        public async Task<MobileResult> Insert(Record model)
+        public async Task<MobileResult> Insert(Point model)
         {
             return await Process(model, "insert");
         }
 
-        public async Task<MobileResult> Delete(Record model)
+        public async Task<MobileResult> Delete(Point model)
         {
             return await Process(model, "delete");
         }
 
-        public async Task<MobileResult> Update(Record model)
+        public async Task<MobileResult> Update(Point model)
         {
             return await Process(model, "update");
         }

@@ -1,41 +1,34 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:constants="clr-namespace:flightR;assembly=flightR"
              x:Class="flightR.Views.Tabs.Profile"
+             xmlns:local="clr-namespace:flightR;assembly=flightR"
              Title="Profile">
 
+    <!--<ListView x:Name="recordList">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell Text="{Binding Latitude}" />
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>-->
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Yenile" Activated="onMenuRefresh" Order="Secondary" Priority="0"></ToolbarItem>
+        <ToolbarItem Name="Yenile" Order="Secondary" Activated="onRefresh" Priority="0"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
         <StackLayout>
-            <Button Text="Get" Clicked="getRecords"></Button>
-            <ListView x:Name="lstStudents" ItemsSource="{Binding .}" IsPullToRefreshEnabled="True"
-              Refreshing="onMenuRefresh">
-                <ListView.Header>
-                    <StackLayout Orientation="Horizontal"
-                                 VerticalOptions="Center"
-                                 HorizontalOptions="Center">
-                        <Label Text="Your Records" FontAttributes="Bold" FontSize="Medium"
-                                TextColor="Olive" />
-                    </StackLayout>
-                </ListView.Header>
+            <Label Text="Gelmedi daha" x:Name="lbl"></Label>
+            <ListView x:Name="recordList" IsPullToRefreshEnabled="True" Refreshing="onRefresh">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Latitude}" Detail="{Binding Altitude}">
-
-                            <TextCell.ContextActions>
-                                <MenuItem CommandParameter="{Binding Id}" Text="Sil" 
-                          IsDestructive="True" Clicked="onMenuDelete"></MenuItem>
-                                <!--<MenuItem CommandParameter="{Binding Id}" Text="Detay"
-                          Clicked="onMenuDetail"></MenuItem>-->
-                            </TextCell.ContextActions>
-
-                        </TextCell>
+                        <TextCell Text="{Binding Latitude}" Detail="{Binding Altitude}"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

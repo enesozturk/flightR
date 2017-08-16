@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="flighRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="flighRModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="List">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,6 +12,23 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RecordListId" Type="int" Nullable="false" />
           <Property Name="RecordId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
+          <Property Name="Altitude" Type="float" Nullable="false" />
+          <Property Name="PointListId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PointList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Record">
           <Key>
@@ -53,8 +70,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Point_PointList">
+          <End Role="PointList" Type="Self.PointList" Multiplicity="1" />
+          <End Role="Point" Type="Self.Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="PointListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="flighRModelStoreContainer">
           <EntitySet Name="List" EntityType="Self.List" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Point" EntityType="Self.Point" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointList" EntityType="Self.PointList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Record" EntityType="Self.Record" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RecordList" EntityType="Self.RecordList" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_List_Record" Association="Self.FK_List_Record">
@@ -64,6 +95,10 @@
           <AssociationSet Name="FK_List_RecordList" Association="Self.FK_List_RecordList">
             <End Role="RecordList" EntitySet="RecordList" />
             <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Point_PointList" Association="Self.FK_Point_PointList">
+            <End Role="PointList" EntitySet="PointList" />
+            <End Role="Point" EntitySet="Point" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -81,6 +116,12 @@
           <AssociationSet Name="FK_List_RecordList" Association="flighRModel.FK_List_RecordList">
             <End Role="RecordList" EntitySet="RecordList" />
             <End Role="List" EntitySet="List" />
+          </AssociationSet>
+          <EntitySet Name="Point" EntityType="flighRModel.Point" />
+          <EntitySet Name="PointList" EntityType="flighRModel.PointList" />
+          <AssociationSet Name="FK_Point_PointList" Association="flighRModel.FK_Point_PointList">
+            <End Role="PointList" EntitySet="PointList" />
+            <End Role="Point" EntitySet="Point" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="List">
@@ -135,6 +176,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Point">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
+          <Property Name="Altitude" Type="Double" Nullable="false" />
+          <Property Name="PointListId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PointList" Relationship="flighRModel.FK_Point_PointList" FromRole="Point" ToRole="PointList" />
+        </EntityType>
+        <EntityType Name="PointList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Point" Relationship="flighRModel.FK_Point_PointList" FromRole="PointList" ToRole="Point" />
+        </EntityType>
+        <Association Name="FK_Point_PointList">
+          <End Type="flighRModel.PointList" Role="PointList" Multiplicity="1" />
+          <End Type="flighRModel.Point" Role="Point" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointList">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Point">
+              <PropertyRef Name="PointListId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -163,6 +235,25 @@
           <EntitySetMapping Name="RecordList">
             <EntityTypeMapping TypeName="flighRModel.RecordList">
               <MappingFragment StoreEntitySet="RecordList">
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Point">
+            <EntityTypeMapping TypeName="flighRModel.Point">
+              <MappingFragment StoreEntitySet="Point">
+                <ScalarProperty Name="PointListId" ColumnName="PointListId" />
+                <ScalarProperty Name="Altitude" ColumnName="Altitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointList">
+            <EntityTypeMapping TypeName="flighRModel.PointList">
+              <MappingFragment StoreEntitySet="PointList">
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>

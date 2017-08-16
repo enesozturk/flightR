@@ -12,6 +12,7 @@ namespace Data
             //    new CreateDatabaseIfNotExists<DbContext>());
         }
         public virtual DbSet<Record> record { get; set; }
+        public virtual DbSet<Point> point { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

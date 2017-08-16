@@ -72,6 +72,12 @@
       <DependentUpon>flightRModels.tt</DependentUpon>
     </Compile>
     <Compile Include="MobileResult.cs" />
+    <Compile Include="Point.cs">
+      <DependentUpon>flightRModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PointList.cs">
+      <DependentUpon>flightRModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Record.cs">
       <DependentUpon>flightRModels.tt</DependentUpon>
