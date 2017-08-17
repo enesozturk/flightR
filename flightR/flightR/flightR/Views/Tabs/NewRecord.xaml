@@ -22,17 +22,14 @@
 
             <maps:Map HorizontalOptions="FillAndExpand"
             x:Name="MyMap"
-            IsShowingUser="true"
+            HasScrollEnabled="True"
+            HasZoomEnabled="True"
+            IsShowingUser="true" 
             MapType="Hybrid"
         />
-
-            <!--<Button
-                Text="START RECORD"
-                Clicked="btnRecord">
-            </Button>-->
-            <Button Text="START TIMER" Clicked="startTimer"></Button>
-            <Button Text="STOP TIMER" Clicked="stopTimer"></Button>
-            <Label FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            
+            <Button x:Name="startTimerButton" Text="START" Clicked="startTimer"></Button>
+            <Button x:Name="stopTimerButton" Text="STOP" Clicked="stopTimer"></Button>
             
             <Label FontSize="Medium" Text="Latitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             <Label x:Name="lbllatitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />

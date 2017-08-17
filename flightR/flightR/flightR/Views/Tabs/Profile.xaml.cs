@@ -31,8 +31,8 @@ namespace flightR.Views.Tabs
                 var records = await service.GetRecords();
                 foreach (Models.Record item in records)
                     model.Add(item);
-                
-                lbl.Text = model.Count.ToString();
+
+                lblCount.Text = model.Count.ToString() + "Record(s)";
                 recordList.ItemsSource = model;
             }
             finally
@@ -49,6 +49,7 @@ namespace flightR.Views.Tabs
         public void onRefresh(object sender, EventArgs e)
         {
             loadData();
+            recordList.IsRefreshing = false;
         }
 
         public async void onTapped(object sender, EventArgs e)

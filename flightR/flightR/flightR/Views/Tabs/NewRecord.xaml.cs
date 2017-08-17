@@ -31,12 +31,16 @@ namespace flightR.Views.Tabs
         {
             timer = DependencyService.Get<IAdvancedTimer>();
             InitializeComponent();
+            stopTimerButton.IsVisible = false;
+            MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(41.068044, 29.014540), Distance.FromKilometers(1)));
         }
 
         public void startTimer(object sender, EventArgs e)
         {
             timer.initTimer(1000, timerElapsed, true);
             timer.startTimer();
+            startTimerButton.IsVisible = false;
+            stopTimerButton.IsVisible = true;
         }
 
         public void stopTimer(object sender, EventArgs e)
@@ -48,6 +52,12 @@ namespace flightR.Views.Tabs
             record = null;
             mobileresult = null;
             point = null;
+            lbllatitude.Text = 0.ToString();
+            lbllongitude.Text = 0.ToString();
+            lblaltitude.Text = 0.ToString();
+            lblspeed.Text = 0.ToString();
+            startTimerButton.IsVisible = true;
+            stopTimerButton.IsVisible = false;
         }
 
         public async void timerElapsed(object sender, EventArgs e)
@@ -78,8 +88,21 @@ namespace flightR.Views.Tabs
             {
                 HasScrollEnabled = true,
                 HasZoomEnabled = true,
-                MapType = MapType.Hybrid
+                MapType = MapType.Hybrid,
+                IsShowingUser = true
             };
+
+            Pin pin = new Pin
+            {
+                Type = PinType.Place,
+                Address = "Microsoft Türkiye",
+                Label = "Microsoft Türkiye",
+                Position = new Xamarin.Forms.Maps.Position(41.068044, 29.014540)
+            };
+
+            map.Pins.Add(pin);
+
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(41.068044, 29.014540), Distance.FromKilometers(1)));
         }
 
         private async void CreateNewRecord()
