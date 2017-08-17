@@ -51,7 +51,7 @@ namespace flightR.Provider
         public async Task<IEnumerable<Record>> GetRecords()
         {
             HttpClient client = await GetClient();
-            var result = await client.GetStringAsync(Url + "record/getall");
+            var result = await client.GetStringAsync(Url + "record/getall/1");
             var mobileResult = JsonConvert.DeserializeObject<MobileResult>(result);
             return JsonConvert.DeserializeObject<IEnumerable<Record>>
                 (mobileResult.Data.ToString());

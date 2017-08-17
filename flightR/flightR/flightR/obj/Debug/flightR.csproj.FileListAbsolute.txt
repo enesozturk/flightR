@@ -34,7 +34,6 @@ C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.pdb
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.xml
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.pdb
-C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.xml
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\System.Net.Http.Primitives.xml
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Core.pdb
@@ -44,3 +43,5 @@ C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Xaml.pdb
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Xamarin.Forms.Xaml.xml
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Modals.RecordDetail.xaml.g.cs
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.xml

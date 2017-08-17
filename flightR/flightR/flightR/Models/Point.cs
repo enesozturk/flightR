@@ -12,6 +12,6 @@ namespace flightR.Models
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public double Altitude { get; set; }
-        public int PointListId { get; set; }
+        public int RecordId { get; set; }
     }
 }

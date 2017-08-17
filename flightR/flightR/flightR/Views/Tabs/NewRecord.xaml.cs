@@ -40,9 +40,9 @@ namespace flightR.Views.Tabs
 
         private async void btnRecord(object sender, EventArgs e)
         {
-            //Navigation.PushModalAsync(new Insert());
-            await GetCurrentLocation(); // pozisyon bilgileri al
+            var position = await GetCurrentLocation(); // pozisyon bilgileri al
 
+            
             Record newRecord = new Record //yeni kayıt modeli oluştur
             {
                 CreatedDate = DateTime.Now,
@@ -51,14 +51,14 @@ namespace flightR.Views.Tabs
 
             await manager.NewRecord(newRecord); //kaydı db ye gonder
 
-            var record = await manager.GetLastRecord(1); //son oluşturulan kaydı al
+            var record = await manager.GetLastRecord(1); //son oluşturulan kaydı al - user id verdik
 
             Models.Point newPoint = new Models.Point //yeni nokta oluştur
             {
-                Latitude = 2.222,
-                Longitude = 3.333,
-                Altitude = 1.111,
-                PointListId = record.Id //yeni noktaya son kayıdın id'sini ver
+                Latitude = position.Latitude,
+                Longitude = position.Longitude,
+                Altitude = position.Altitude,
+                RecordId = record.Id //yeni noktaya son kayıdın id'sini ver
             };
 
             MobileResult mobileResult = await Task.Run(() => manager.Insert(newPoint));// oluşturulan point modelini dbye kaydet
@@ -74,18 +74,19 @@ namespace flightR.Views.Tabs
             }
         }
 
-        private async Task GetCurrentLocation()
+        private async Task<Plugin.Geolocator.Abstractions.Position> GetCurrentLocation()
         {
             var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 20;
+            locator.DesiredAccuracy = 100;
 
-            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+            var position = await locator.GetPositionAsync(10000);
 
             //lblLat.Text = position.Latitude.ToString();
             //lblLong.Text = position.Longitude.ToString();
             //lblAlt.Text = position.Altitude.ToString();
 
-            Position = position;
+            //Position = position;
+            return position;
         }
     }
 }

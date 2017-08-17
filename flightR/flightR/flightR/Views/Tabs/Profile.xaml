@@ -21,10 +21,10 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Gelmedi daha" x:Name="lbl"></Label>
-            <ListView x:Name="recordList" IsPullToRefreshEnabled="True" Refreshing="onRefresh">
+            <ListView x:Name="recordList" IsPullToRefreshEnabled="True" Refreshing="onRefresh" ItemTapped="onTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding Latitude}" Detail="{Binding Altitude}"></TextCell>
+                        <TextCell Text="{Binding CreatedDate}"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
