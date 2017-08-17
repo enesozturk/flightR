@@ -1,5 +1,6 @@
 ﻿using flightR.Models;
 using flightR.Provider;
+using flightR.Views.Modals;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -50,9 +51,9 @@ namespace flightR.Views.Tabs
             loadData();
         }
 
-        public async void onSelected(object sender, EventArgs e)
+        public async void onTapped(object sender, EventArgs e)
         {
-            //
+            await Navigation.PushModalAsync(new NavigationPage(new RecordDetail()));
         }
 
         public async void onDelete(object sender, EventArgs e)

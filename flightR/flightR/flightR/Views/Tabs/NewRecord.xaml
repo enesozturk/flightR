@@ -27,8 +27,8 @@
         />
 
             <Button
-                x:Name="recordButton"
-                Text="START RECORD">
+                Text="START RECORD"
+                Clicked="btnRecord">
             </Button>
             
             <Label Text="Speed"
