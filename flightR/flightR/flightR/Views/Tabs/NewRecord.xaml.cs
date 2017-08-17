@@ -17,9 +17,10 @@ namespace flightR.Views.Tabs
     {
         public int timerCounter { get; set; } = 0; //for text
         public int buttonCounter { get; set; } = 0; // to stop
-        public Plugin.Geolocator.Abstractions.Position position { get; set; }
+        public Plugin.Geolocator.Abstractions.Position Position { get; set; }
 
         public List<Models.Point> newList;
+        private ServiceManager manager = new ServiceManager();
 
         public NewRecord()
         {
@@ -40,19 +41,29 @@ namespace flightR.Views.Tabs
         private async void btnRecord(object sender, EventArgs e)
         {
             //Navigation.PushModalAsync(new Insert());
-            await GetCurrentLocation();
+            await GetCurrentLocation(); // pozisyon bilgileri al
 
-            Models.Point newRecord = new Models.Point
+            Record newRecord = new Record //yeni kayıt modeli oluştur
+            {
+                CreatedDate = DateTime.Now,
+                UserId = 1
+            };
+
+            await manager.NewRecord(newRecord); //kaydı db ye gonder
+
+            var record = await manager.GetLastRecord(1); //son oluşturulan kaydı al
+
+            Models.Point newPoint = new Models.Point //yeni nokta oluştur
             {
                 Latitude = 2.222,
                 Longitude = 3.333,
-                Altitude = 1.111
+                Altitude = 1.111,
+                PointListId = record.Id //yeni noktaya son kayıdın id'sini ver
             };
 
-            ServiceManager manager = new ServiceManager();
-            MobileResult mobileResult = await Task.Run(() => manager.Insert(newRecord));
+            MobileResult mobileResult = await Task.Run(() => manager.Insert(newPoint));// oluşturulan point modelini dbye kaydet
 
-            if (mobileResult.Result)
+            if (mobileResult.Result) //kaydedildi mesajı göster
             {
                 await DisplayAlert("Success", mobileResult.Message, "Ok", "Cancel");
                 Navigation.PopModalAsync();
@@ -61,16 +72,6 @@ namespace flightR.Views.Tabs
             {
                 DisplayAlert("Error", mobileResult.Message, "Ok", "Cancel");
             }
-        }
-
-        private async Task Write1()
-        {
-            //lblLat.Text = "Write1";
-        }
-
-        private async Task Write2()
-        {
-            //lblLong.Text = "Write2";
         }
 
         private async Task GetCurrentLocation()
@@ -84,7 +85,7 @@ namespace flightR.Views.Tabs
             //lblLong.Text = position.Longitude.ToString();
             //lblAlt.Text = position.Altitude.ToString();
 
-            position = position;
+            Position = position;
         }
     }
 }

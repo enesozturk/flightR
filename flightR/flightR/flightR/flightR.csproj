@@ -41,6 +41,7 @@
     <Compile Include="Data\Recorder.cs" />
     <Compile Include="Helper\IDeviceHelper.cs" />
     <Compile Include="Models\MobilResult.cs" />
+    <Compile Include="Models\Point.cs" />
     <Compile Include="Models\Record.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\myPoint.cs" />

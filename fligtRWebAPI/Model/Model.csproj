@@ -53,48 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="flightRModels.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>flightRModels.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="flightRModels.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="flightRModels.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>flightRModels.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="List.cs">
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
     <Compile Include="MobileResult.cs" />
-    <Compile Include="Point.cs">
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PointList.cs">
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Point.cs" />
+    <Compile Include="Record.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Record.cs">
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RecordList.cs">
-      <DependentUpon>flightRModels.tt</DependentUpon>
-    </Compile>
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="flightRModels.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>flightRModels.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="flightRModels.edmx.diagram">
-      <DependentUpon>flightRModels.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,18 +68,6 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="flightRModels.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>flightRModels.edmx</DependentUpon>
-      <LastGenOutput>flightRModels.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="flightRModels.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>flightRModels.edmx</DependentUpon>
-      <LastGenOutput>flightRModels.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

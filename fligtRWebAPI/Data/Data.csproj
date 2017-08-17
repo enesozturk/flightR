@@ -64,6 +64,26 @@
     <Compile Include="Migrations\201708161159526_changes1.Designer.cs">
       <DependentUpon>201708161159526_changes1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708161303132_addPointListDbSet.cs" />
+    <Compile Include="Migrations\201708161303132_addPointListDbSet.Designer.cs">
+      <DependentUpon>201708161303132_addPointListDbSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161331150_addmodels.cs" />
+    <Compile Include="Migrations\201708161331150_addmodels.Designer.cs">
+      <DependentUpon>201708161331150_addmodels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161800084_changes2.cs" />
+    <Compile Include="Migrations\201708161800084_changes2.Designer.cs">
+      <DependentUpon>201708161800084_changes2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708161938056_changePointList.cs" />
+    <Compile Include="Migrations\201708161938056_changePointList.Designer.cs">
+      <DependentUpon>201708161938056_changePointList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708170856367_updateDb.cs" />
+    <Compile Include="Migrations\201708170856367_updateDb.Designer.cs">
+      <DependentUpon>201708170856367_updateDb.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,6 +106,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708161159526_changes1.resx">
       <DependentUpon>201708161159526_changes1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161303132_addPointListDbSet.resx">
+      <DependentUpon>201708161303132_addPointListDbSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161331150_addmodels.resx">
+      <DependentUpon>201708161331150_addmodels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161800084_changes2.resx">
+      <DependentUpon>201708161800084_changes2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708161938056_changePointList.resx">
+      <DependentUpon>201708161938056_changePointList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708170856367_updateDb.resx">
+      <DependentUpon>201708170856367_updateDb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
