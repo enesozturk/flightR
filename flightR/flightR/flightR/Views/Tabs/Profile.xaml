@@ -4,15 +4,7 @@
              xmlns:constants="clr-namespace:flightR;assembly=flightR"
              x:Class="flightR.Views.Tabs.Profile"
              xmlns:local="clr-namespace:flightR;assembly=flightR"
-             Title="Profile">
-
-    <!--<ListView x:Name="recordList">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell Text="{Binding Latitude}" />
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
+             Title="Your Records">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Name="Yenile" Order="Secondary" Activated="onRefresh" Priority="0"></ToolbarItem>
@@ -20,11 +12,11 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Gelmedi daha" x:Name="lbl"></Label>
-            <ListView x:Name="recordList" IsPullToRefreshEnabled="True" Refreshing="onRefresh" ItemTapped="onTapped">
+            <Label Text="0 Record(s)" HorizontalOptions="Center" x:Name="lblCount"></Label>
+            <ListView x:Name="recordList" SeparatorColor="Transparent" IsPullToRefreshEnabled="True" Refreshing="onRefresh" ItemTapped="onTapped">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextCell Text="{Binding CreatedDate}"></TextCell>
+                        <TextCell Text="{Binding CreatedDate}" TextColor="Black"></TextCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

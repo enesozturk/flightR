@@ -11,6 +11,9 @@ namespace flightR.Views
         {
             InitializeComponent();
 
+            ToolbarItems.Add(new ToolbarItem("Profile", null, () => { }));
+            ToolbarItems.Add(new ToolbarItem("Settings", null, () => { }));
+
             Children.Add(new NewRecord());
             Children.Add(new Profile());
             Children.Add(new Settings());

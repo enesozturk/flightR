@@ -2,10 +2,19 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="flightR.Views.Tabs.Settings"
-             Title="Settings">
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             Title="Take Offs">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Settings!" />
+            <Picker x:Name="regionPicker" SelectedIndexChanged="indexChanged"/>
+
+            <maps:Map HorizontalOptions="FillAndExpand"
+            x:Name="MyMap"
+            HasScrollEnabled="True"
+            HasZoomEnabled="True"
+            IsShowingUser="true" 
+            MapType="Hybrid"
+        />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
