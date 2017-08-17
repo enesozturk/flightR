@@ -45,3 +45,6 @@ C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.csprojResolveAssemblyReference.cache
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Modals.RecordDetail.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\Plugin.Geolocator.Abstractions.xml
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\AdvancedTimer.Forms.Plugin.Abstractions.dll
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\AdvancedTimer.Forms.Plugin.Abstractions.pdb
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\bin\Debug\AdvancedTimer.Forms.Plugin.Abstractions.xml

@@ -31,7 +31,9 @@ namespace flightR.Provider
         private async Task<MobileResult> Process(Point model, string procsType)
         {
             HttpClient client = await GetClient();
-            var response = await client.PostAsync(Url + procsType, new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
+            var url = Url + procsType;
+            var serialized = JsonConvert.SerializeObject(model);
+            var response = client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json")).Result;
             var mobileResult = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<MobileResult>(mobileResult);
             return result;
@@ -75,13 +77,13 @@ namespace flightR.Provider
         // kayıt olustur
         public async Task<MobileResult> Insert(Record model)
         {
-            return await Process(model, "/record/insert");
+            return await Process(model, "record/insert");
         }
 
         // point olustur
         public async Task<MobileResult> Insert(Point model)
         {
-            return await Process(model, "/point/insert");
+            return await Process(model, "point/insert");
         }
 
         public async Task<MobileResult> Delete(Point model)

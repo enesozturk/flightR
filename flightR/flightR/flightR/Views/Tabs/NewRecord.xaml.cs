@@ -1,4 +1,5 @@
-﻿using flightR.Models;
+﻿using AdvancedTimer.Forms.Plugin.Abstractions;
+using flightR.Models;
 using flightR.Provider;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
@@ -16,15 +17,59 @@ namespace flightR.Views.Tabs
     public partial class NewRecord : ContentPage
     {
         public int timerCounter { get; set; } = 0; //for text
-        public int buttonCounter { get; set; } = 0; // to stop
-        public Plugin.Geolocator.Abstractions.Position Position { get; set; }
 
-        public List<Models.Point> newList;
         private ServiceManager manager = new ServiceManager();
+
+        public Plugin.Geolocator.Abstractions.Position position { get; set; }
+        public Record record { get; set; }
+        public Models.Point point { get; set; }
+        public MobileResult mobileresult { get; set; }
+
+        static IAdvancedTimer timer;
 
         public NewRecord()
         {
+            timer = DependencyService.Get<IAdvancedTimer>();
             InitializeComponent();
+        }
+
+        public void startTimer(object sender, EventArgs e)
+        {
+            timer.initTimer(1000, timerElapsed, true);
+            timer.startTimer();
+        }
+
+        public void stopTimer(object sender, EventArgs e)
+        {
+            DisplayAlert("Success", "Record saved your list", "Ok", "Cancel");
+            timer.stopTimer();
+            timerCounter = 0;
+            position = null;
+            record = null;
+            mobileresult = null;
+            point = null;
+        }
+
+        public async void timerElapsed(object sender, EventArgs e)
+        {
+            timerCounter++;
+            // her saniye bu fonksiyon çalışacak
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
+            {
+                if(timerCounter == 1)
+                {
+                    record = new Record //record oluştur
+                    {
+                        CreatedDate = DateTime.Now,
+                        UserId = 1
+                    };
+                    await manager.NewRecord(record);
+                }
+                if (timerCounter % 5 == 0)
+                {
+                    await CreateNewPoint();
+                }
+            });
         }
 
         void CreateMap()
@@ -35,43 +80,39 @@ namespace flightR.Views.Tabs
                 HasZoomEnabled = true,
                 MapType = MapType.Hybrid
             };
-
         }
 
-        private async void btnRecord(object sender, EventArgs e)
+        private async void CreateNewRecord()
         {
-            var position = await GetCurrentLocation(); // pozisyon bilgileri al
-
-            
-            Record newRecord = new Record //yeni kayıt modeli oluştur
+            record = new Record //record oluştur
             {
                 CreatedDate = DateTime.Now,
                 UserId = 1
             };
+            await manager.NewRecord(record); //record'u db ye kaydet
+        }
 
-            await manager.NewRecord(newRecord); //kaydı db ye gonder
-
-            var record = await manager.GetLastRecord(1); //son oluşturulan kaydı al - user id verdik
-
-            Models.Point newPoint = new Models.Point //yeni nokta oluştur
+        private async Task CreateNewPoint()
+        {
+            //her saniye point oluşturacak
+            position = await GetCurrentLocation();
+            var record2 = await manager.GetLastRecord(1);
+            point = new Models.Point
             {
+                Id = 0,
                 Latitude = position.Latitude,
                 Longitude = position.Longitude,
-                Altitude = position.Altitude,
-                RecordId = record.Id //yeni noktaya son kayıdın id'sini ver
+                Altitude = 15.154,
+                RecordId = record2.Id
             };
 
-            MobileResult mobileResult = await Task.Run(() => manager.Insert(newPoint));// oluşturulan point modelini dbye kaydet
+            lbllatitude.Text = position.Latitude.ToString();
+            lbllongitude.Text = position.Longitude.ToString();
+            lblaltitude.Text = position.Altitude.ToString();
+            lblspeed.Text = position.Speed.ToString();
 
-            if (mobileResult.Result) //kaydedildi mesajı göster
-            {
-                await DisplayAlert("Success", mobileResult.Message, "Ok", "Cancel");
-                Navigation.PopModalAsync();
-            }
-            else
-            {
-                DisplayAlert("Error", mobileResult.Message, "Ok", "Cancel");
-            }
+            //pointi db ye kaydet
+            await manager.Insert(point);
         }
 
         private async Task<Plugin.Geolocator.Abstractions.Position> GetCurrentLocation()
@@ -80,12 +121,7 @@ namespace flightR.Views.Tabs
             locator.DesiredAccuracy = 100;
 
             var position = await locator.GetPositionAsync(10000);
-
-            //lblLat.Text = position.Latitude.ToString();
-            //lblLong.Text = position.Longitude.ToString();
-            //lblAlt.Text = position.Altitude.ToString();
-
-            //Position = position;
+            
             return position;
         }
     }

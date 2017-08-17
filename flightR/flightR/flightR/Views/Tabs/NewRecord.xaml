@@ -18,7 +18,7 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="stack1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
             <maps:Map HorizontalOptions="FillAndExpand"
             x:Name="MyMap"
@@ -26,33 +26,27 @@
             MapType="Hybrid"
         />
 
-            <Button
+            <!--<Button
                 Text="START RECORD"
                 Clicked="btnRecord">
-            </Button>
+            </Button>-->
+            <Button Text="START TIMER" Clicked="startTimer"></Button>
+            <Button Text="STOP TIMER" Clicked="stopTimer"></Button>
+            <Label FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             
-            <Label Text="Speed"
-           HorizontalOptions="StartAndExpand" />
-            <Label Text="Altitude"
-           HorizontalOptions="StartAndExpand" />
+            <Label FontSize="Medium" Text="Latitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lbllatitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+            <Label FontSize="Medium" Text="Longitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lbllongitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+            <Label FontSize="Medium" Text="Altitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblaltitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+            <Label FontSize="Medium" Text="Speed" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblspeed" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>
 
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Large"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout WidthRequest="">
-            <Label x:Name="lblLat" Text="Lat: 0.000000"></Label>
-            <Label x:Name="lblLong" Text="Long: 0.000000"></Label>
-            <Label x:Name="lblAlt" Text="Alt: 0.000000"></Label>
-            <Label x:Name="lblCounter" Text="Counter: "></Label>
-            <Button Text="Start Record" Clicked="btnRecord"></Button>
-        </StackLayout>
-    </ContentPage.Content>-->
 </ContentPage>
