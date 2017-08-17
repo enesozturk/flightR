@@ -3,5 +3,6 @@
   <PropertyGroup>
     <SelectedDevice>Genymotion Google Nexus 5 - 6.0.0 - API 23 - 1080x1920</SelectedDevice>
     <DefaultDevice>Android</DefaultDevice>
+    <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
 </Project>

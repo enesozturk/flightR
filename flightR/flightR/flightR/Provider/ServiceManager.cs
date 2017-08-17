@@ -9,7 +9,7 @@ namespace flightR.Provider
 {
     public class ServiceManager
     {
-        private string Url = "http://flightrapi.azurewebsites.net/api/record/";
+        private string Url = "http://flightrapi.azurewebsites.net/api/";
         private async Task<HttpClient> GetClient()
         {
             HttpClient client = new HttpClient();
@@ -17,6 +17,17 @@ namespace flightR.Provider
             return client;
         }
 
+        // kayıt işlemleri
+        private async Task<MobileResult> Process(Record model, string procsType)
+        {
+            HttpClient client = await GetClient();
+            var response = await client.PostAsync(Url + procsType, new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json"));
+            var mobileResult = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<MobileResult>(mobileResult);
+            return result;
+        }
+
+        // point işlemleri
         private async Task<MobileResult> Process(Point model, string procsType)
         {
             HttpClient client = await GetClient();
@@ -26,7 +37,8 @@ namespace flightR.Provider
             return result;
         }
 
-        public async Task<IEnumerable<Point>> GetAll()
+        // point'leri getir
+        public async Task<IEnumerable<Point>> GetPoints()
         {
             HttpClient client = await GetClient();
             var result = await client.GetStringAsync(Url + "getall");
@@ -35,9 +47,41 @@ namespace flightR.Provider
                 (mobileResult.Data.ToString());
         }
 
+        // kayıtları getir
+        public async Task<IEnumerable<Record>> GetRecords()
+        {
+            HttpClient client = await GetClient();
+            var result = await client.GetStringAsync(Url + "record/getall");
+            var mobileResult = JsonConvert.DeserializeObject<MobileResult>(result);
+            return JsonConvert.DeserializeObject<IEnumerable<Record>>
+                (mobileResult.Data.ToString());
+        }
+
+        // son kaydı getir
+        public async Task<Record> GetLastRecord(int id)
+        {
+            HttpClient client = await GetClient();
+            var result = await client.GetStringAsync(Url + "record/getlast/"+id);
+            var record = JsonConvert.DeserializeObject<Record>(result);
+            return record;
+        }
+
+        // yeni kayıt olustur
+        public async Task<MobileResult> NewRecord(Record list)
+        {
+            return await Insert(list);
+        }
+
+        // kayıt olustur
+        public async Task<MobileResult> Insert(Record model)
+        {
+            return await Process(model, "/record/insert");
+        }
+
+        // point olustur
         public async Task<MobileResult> Insert(Point model)
         {
-            return await Process(model, "insert");
+            return await Process(model, "/point/insert");
         }
 
         public async Task<MobileResult> Delete(Point model)

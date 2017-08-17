@@ -13,7 +13,7 @@ namespace flightR.Views.Tabs
     public partial class Profile : ContentPage
     {
         ServiceManager service = new ServiceManager();
-        readonly ObservableCollection<Record> model = new ObservableCollection<Record>();
+        readonly ObservableCollection<Models.Record> model = new ObservableCollection<Models.Record>();
 
         public Profile()
         {
@@ -27,8 +27,8 @@ namespace flightR.Views.Tabs
             try
             {
                 model.Clear();
-                var records = await service.GetAll();
-                foreach (Record item in records)
+                var records = await service.GetRecords();
+                foreach (Models.Record item in records)
                     model.Add(item);
                 
                 lbl.Text = model.Count.ToString();

@@ -10,8 +10,8 @@ namespace Repo
     {
         private static readonly Context context = new Context();
 
-        private GenericRepository<Record> _record;
         private GenericRepository<Point> _point;
+        private GenericRepository<Record> _record;
 
         public GenericRepository<Point> PointRepository
         {
