@@ -19,7 +19,7 @@ namespace fligtRWebAPI.Controllers
 
             try
             {
-                var records = work.RecordRepository.Get(x=>x.UserId == id, q=>q.OrderBy(x=>x.CreatedDate), "");
+                var records = work.RecordRepository.Get(x=>x.UserId == id, q=>q.OrderByDescending(x=>x.CreatedDate), "");
                 
 
                 result.Data = records;
