@@ -66,7 +66,7 @@ namespace flightR.Views.Tabs
             // her saniye bu fonksiyon çalışacak
             Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
-                if(timerCounter == 1)
+                if (timerCounter == 1)
                 {
                     record = new Record //record oluştur
                     {
@@ -75,10 +75,8 @@ namespace flightR.Views.Tabs
                     };
                     await manager.NewRecord(record);
                 }
-                if (timerCounter % 5 == 0)
-                {
-                    await CreateNewPoint();
-                }
+                await CreateNewPoint();
+                lblspeed.Text = timerCounter.ToString();
             });
         }
 
@@ -118,8 +116,10 @@ namespace flightR.Views.Tabs
         private async Task CreateNewPoint()
         {
             //her saniye point oluşturacak
+            
             position = await GetCurrentLocation();
             var record2 = await manager.GetLastRecord(1);
+
             point = new Models.Point
             {
                 Id = 0,
@@ -132,20 +132,57 @@ namespace flightR.Views.Tabs
             lbllatitude.Text = position.Latitude.ToString();
             lbllongitude.Text = position.Longitude.ToString();
             lblaltitude.Text = position.Altitude.ToString();
-            lblspeed.Text = position.Speed.ToString();
+            
 
             //pointi db ye kaydet
-            await manager.Insert(point);
+            //await manager.Insert(point);
         }
 
         private async Task<Plugin.Geolocator.Abstractions.Position> GetCurrentLocation()
         {
-            var locator = CrossGeolocator.Current;
-            locator.DesiredAccuracy = 100;
+            Plugin.Geolocator.Abstractions.Position position = null;
+            try
+            {
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 100;
 
-            var position = await locator.GetPositionAsync(10000);
-            
+                position = await locator.GetLastKnownLocationAsync();
+
+                if (position != null)
+                {
+                    //got a cahched position, so let's use it.
+                    return position;
+                }
+
+                if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
+                {
+                    //not available or enabled
+                    //return;
+                }
+
+                position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1), null, true);
+
+            }
+            catch (Exception ex)
+            {
+                //Display error as we have timed out or can't get location.
+            }
+
+            if (position == null)
+                return null;
+
             return position;
+            //var output = string.Format("Time: {0} \nLat: {1} \nLong: {2} \nAltitude: {3} \nAltitude Accuracy: {4} \nAccuracy: {5} \nHeading: {6} \nSpeed: {7}",
+            //    position.Timestamp, position.Latitude, position.Longitude,
+            //    position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
+
+            //Debug.WriteLine(output);
+            //var locator = CrossGeolocator.Current;
+            //locator.DesiredAccuracy = 100;
+
+            //var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1));
+
+            //return position;
         }
     }
 }
