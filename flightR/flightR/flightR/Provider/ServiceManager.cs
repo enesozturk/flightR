@@ -17,6 +17,19 @@ namespace flightR.Provider
             return client;
         }
 
+        public async Task<FacebookProfile> GetFacebookProfile(string accesstoken)
+        {
+            var httpclient = await GetClient();
+
+            var requestUrl = "https://graph.facebook.com/v2.7/me?fields=name,picture,work,website,religion,location,locale,link,cover,age_range,birthday,devices,email,first_name,last_name,gender,hometown,is_verified,languages&access_token="
+                + accesstoken;
+
+            var userJson = await httpclient.GetStringAsync(requestUrl);
+            var profile = JsonConvert.DeserializeObject<FacebookProfile>(userJson);
+
+            return profile;
+        }
+
         // kayıt işlemleri
         private async Task<MobileResult> Process(Record model, string procsType)
         {

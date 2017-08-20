@@ -10,7 +10,8 @@ namespace flightR
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());/
+            MainPage = new FacebookPage();
         }
 
         protected override void OnStart()

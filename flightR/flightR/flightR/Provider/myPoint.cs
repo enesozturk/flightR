@@ -16,7 +16,7 @@ namespace flightR.Provider
             var locator = CrossGeolocator.Current;
             locator.DesiredAccuracy = 100;
 
-            position = await locator.GetPositionAsync(1000);
+            position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1));
 
             return position;
         }
