@@ -5,13 +5,12 @@ namespace flightR
 {
     public partial class App : Application
     {
-        public static string DbName { get; set; } = "flightRDB.db3";
         public App()
         {
             InitializeComponent();
 
-            //MainPage = new NavigationPage(new MainPage());/
-            MainPage = new FacebookPage();
+            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new FacebookPage();
         }
 
         protected override void OnStart()

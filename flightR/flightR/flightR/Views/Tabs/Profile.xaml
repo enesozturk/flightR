@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="0 Record(s)" HorizontalOptions="Center" x:Name="lblCount"></Label>
-            <ListView x:Name="recordList" SeparatorColor="Transparent" IsPullToRefreshEnabled="True" Refreshing="onRefresh" ItemTapped="onTapped">
+            <ListView x:Name="recordList" SeparatorColor="Transparent" IsPullToRefreshEnabled="True" Refreshing="onRefresh">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <TextCell Text="{Binding CreatedDate}" TextColor="Black"></TextCell>

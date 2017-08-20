@@ -16,6 +16,22 @@ namespace flightR.Views.Tabs
         ServiceManager service = new ServiceManager();
         readonly ObservableCollection<Models.Record> model = new ObservableCollection<Models.Record>();
 
+        private Record _record { get; set; }
+        public Record Record
+        {
+            get
+            {
+                return _record;
+            }
+            set
+            {
+                _record = value;
+
+                Application.Current.MainPage.Navigation.PushAsync(new RecordDetailPage(_record));
+            }
+        }
+
+
         public Profile()
         {
             InitializeComponent();
@@ -34,6 +50,19 @@ namespace flightR.Views.Tabs
 
                 lblCount.Text = model.Count.ToString() + "Record(s)";
                 recordList.ItemsSource = model;
+                recordList.ItemSelected += async (sender, e) =>
+                {
+                    if (e.SelectedItem == null)
+                    {
+                        return;
+                    }
+                    else
+                    {
+                        Record record = e.SelectedItem as Record;
+                        recordList.SelectedItem = null;
+                        await Navigation.PushAsync(new RecordDetailPage(record));
+                    }
+                };
             }
             finally
             {
@@ -54,7 +83,7 @@ namespace flightR.Views.Tabs
 
         public async void onTapped(object sender, EventArgs e)
         {
-            await Navigation.PushModalAsync(new NavigationPage(new RecordDetail()));
+            await Navigation.PushModalAsync(new NavigationPage(new RecordDetailPage(Record)));
         }
 
         public async void onDelete(object sender, EventArgs e)
@@ -62,5 +91,9 @@ namespace flightR.Views.Tabs
             //
         }
 
+        private void recordList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+        }
     }
 }

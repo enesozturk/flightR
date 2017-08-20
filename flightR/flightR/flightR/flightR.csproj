@@ -49,6 +49,7 @@
     <Compile Include="Provider\ServiceManager.cs" />
     <Compile Include="Utils\Grouping.cs" />
     <Compile Include="Utils\myTimer.cs" />
+    <Compile Include="Views\Tabs\RecordDetail.cs" />
     <Compile Include="Views\FacebookPage.cs" />
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -56,8 +57,8 @@
     <Compile Include="Views\Modals\Insert.xaml.cs">
       <DependentUpon>Insert.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Modals\RecordDetail.xaml.cs">
-      <DependentUpon>RecordDetail.xaml</DependentUpon>
+    <Compile Include="Views\Modals\RecordDetailPage.xaml.cs">
+      <DependentUpon>RecordDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Tabs\NewRecord.xaml.cs">
       <DependentUpon>NewRecord.xaml</DependentUpon>
@@ -156,10 +157,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\Modals\RecordDetail.xaml">
+    <EmbeddedResource Include="Views\Modals\RecordDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
