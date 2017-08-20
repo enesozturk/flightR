@@ -33,6 +33,14 @@ namespace flightR.Views.Tabs
             InitializeComponent();
             stopTimerButton.IsVisible = false;
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(41.068044, 29.014540), Distance.FromKilometers(1)));
+            var pin = new Pin
+            {
+                Type = PinType.Place,
+                Address = "Pin1",
+                Label = "Label",
+                Position = new Xamarin.Forms.Maps.Position(41.010738, 29.005470),
+            };
+            MyMap.Pins.Add(pin);
         }
 
         public void startTimer(object sender, EventArgs e)
@@ -66,16 +74,16 @@ namespace flightR.Views.Tabs
             // her saniye bu fonksiyon çalışacak
             Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
-                if (timerCounter == 1)
-                {
-                    record = new Record //record oluştur
-                    {
-                        CreatedDate = DateTime.Now,
-                        UserId = 1
-                    };
-                    await manager.NewRecord(record);
-                }
-                await CreateNewPoint();
+                //if (timerCounter == 1)
+                //{
+                //    record = new Record //record oluştur
+                //    {
+                //        CreatedDate = DateTime.Now,
+                //        UserId = 1
+                //    };
+                //    await manager.NewRecord(record);
+                //}
+                //await CreateNewPoint();
                 lblspeed.Text = timerCounter.ToString();
             });
         }

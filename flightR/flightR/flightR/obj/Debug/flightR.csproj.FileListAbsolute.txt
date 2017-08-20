@@ -43,7 +43,7 @@ C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.MainPage.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Tabs.Settings.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Modals.Insert.xaml.g.cs
-C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Modals.RecordDetail.xaml.g.cs
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.dll
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.pdb
 C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.csprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Projects\flightR\flightR\flightR\flightR\flightR\obj\Debug\flightR.Views.Modals.RecordDetailPage.xaml.g.cs

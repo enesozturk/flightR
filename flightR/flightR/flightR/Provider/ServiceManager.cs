@@ -56,7 +56,7 @@ namespace flightR.Provider
         public async Task<IEnumerable<Point>> GetPoints()
         {
             HttpClient client = await GetClient();
-            var result = await client.GetStringAsync(Url + "getall");
+            var result = await client.GetStringAsync(Url + "point/getall");
             var mobileResult = JsonConvert.DeserializeObject<MobileResult>(result);
             return JsonConvert.DeserializeObject<IEnumerable<Point>>
                 (mobileResult.Data.ToString());

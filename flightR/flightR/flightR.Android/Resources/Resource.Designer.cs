@@ -4086,17 +4086,17 @@ namespace flightR.Droid
 		public partial class Style
 		{
 			
-			// aapt resource value: 0x7f0c00aa
-			public const int AlertDialog_AppCompat = 2131493034;
-			
-			// aapt resource value: 0x7f0c00ab
-			public const int AlertDialog_AppCompat_Light = 2131493035;
-			
 			// aapt resource value: 0x7f0c00ac
-			public const int Animation_AppCompat_Dialog = 2131493036;
+			public const int AlertDialog_AppCompat = 2131493036;
 			
 			// aapt resource value: 0x7f0c00ad
-			public const int Animation_AppCompat_DropDownUp = 2131493037;
+			public const int AlertDialog_AppCompat_Light = 2131493037;
+			
+			// aapt resource value: 0x7f0c00ae
+			public const int Animation_AppCompat_Dialog = 2131493038;
+			
+			// aapt resource value: 0x7f0c00af
+			public const int Animation_AppCompat_DropDownUp = 2131493039;
 			
 			// aapt resource value: 0x7f0c016e
 			public const int Animation_Design_BottomSheetDialog = 2131493230;
@@ -4104,26 +4104,26 @@ namespace flightR.Droid
 			// aapt resource value: 0x7f0c0189
 			public const int AppCompatDialogStyle = 2131493257;
 			
-			// aapt resource value: 0x7f0c00ae
-			public const int Base_AlertDialog_AppCompat = 2131493038;
-			
-			// aapt resource value: 0x7f0c00af
-			public const int Base_AlertDialog_AppCompat_Light = 2131493039;
-			
 			// aapt resource value: 0x7f0c00b0
-			public const int Base_Animation_AppCompat_Dialog = 2131493040;
+			public const int Base_AlertDialog_AppCompat = 2131493040;
 			
 			// aapt resource value: 0x7f0c00b1
-			public const int Base_Animation_AppCompat_DropDownUp = 2131493041;
+			public const int Base_AlertDialog_AppCompat_Light = 2131493041;
+			
+			// aapt resource value: 0x7f0c00b2
+			public const int Base_Animation_AppCompat_Dialog = 2131493042;
+			
+			// aapt resource value: 0x7f0c00b3
+			public const int Base_Animation_AppCompat_DropDownUp = 2131493043;
 			
 			// aapt resource value: 0x7f0c000c
 			public const int Base_CardView = 2131492876;
 			
-			// aapt resource value: 0x7f0c00b2
-			public const int Base_DialogWindowTitle_AppCompat = 2131493042;
+			// aapt resource value: 0x7f0c00b4
+			public const int Base_DialogWindowTitle_AppCompat = 2131493044;
 			
-			// aapt resource value: 0x7f0c00b3
-			public const int Base_DialogWindowTitleBackground_AppCompat = 2131493043;
+			// aapt resource value: 0x7f0c00b5
+			public const int Base_DialogWindowTitleBackground_AppCompat = 2131493045;
 			
 			// aapt resource value: 0x7f0c004e
 			public const int Base_TextAppearance_AppCompat = 2131492942;
@@ -4179,8 +4179,8 @@ namespace flightR.Droid
 			// aapt resource value: 0x7f0c005b
 			public const int Base_TextAppearance_AppCompat_Menu = 2131492955;
 			
-			// aapt resource value: 0x7f0c00b4
-			public const int Base_TextAppearance_AppCompat_SearchResult = 2131493044;
+			// aapt resource value: 0x7f0c00b6
+			public const int Base_TextAppearance_AppCompat_SearchResult = 2131493046;
 			
 			// aapt resource value: 0x7f0c005c
 			public const int Base_TextAppearance_AppCompat_SearchResult_Subtitle = 2131492956;
@@ -4230,11 +4230,11 @@ namespace flightR.Droid
 			// aapt resource value: 0x7f0c0067
 			public const int Base_TextAppearance_AppCompat_Widget_Button = 2131492967;
 			
-			// aapt resource value: 0x7f0c00b5
-			public const int Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131493045;
+			// aapt resource value: 0x7f0c00aa
+			public const int Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = 2131493034;
 			
-			// aapt resource value: 0x7f0c00b6
-			public const int Base_TextAppearance_AppCompat_Widget_Button_Colored = 2131493046;
+			// aapt resource value: 0x7f0c00ab
+			public const int Base_TextAppearance_AppCompat_Widget_Button_Colored = 2131493035;
 			
 			// aapt resource value: 0x7f0c00a4
 			public const int Base_TextAppearance_AppCompat_Widget_Button_Inverse = 2131493028;
