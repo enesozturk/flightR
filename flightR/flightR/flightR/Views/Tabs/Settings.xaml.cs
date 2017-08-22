@@ -1,4 +1,5 @@
-﻿using System;
+﻿using flightR.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +14,10 @@ namespace flightR.Views.Tabs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
     {
-        public Settings()
+        private User user = new User();
+        public Settings(User _user)
         {
+            user = _user;
             InitializeComponent();
 
             regionPicker.Items.Add("Serdivan/Sakarya");

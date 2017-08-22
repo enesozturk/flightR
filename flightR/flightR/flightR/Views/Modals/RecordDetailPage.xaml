@@ -14,14 +14,9 @@
                 MapType="Hybrid"
                 />
             <Slider x:Name="flightSlider"/>
-            <Label x:Name="sliderValue" Text="-"></Label>
-            <!--<ListView x:Name="pointList" SeparatorColor="Transparent">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextCell Text="{Binding Altitude}" TextColor="Black"></TextCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>-->
+            <Label x:Name="sliderValue" Text="-" HorizontalOptions="Center"></Label>
+            <Label x:Name="lblMaxSpeed" Text="-" HorizontalOptions="Center"></Label>
+            <Label x:Name="lblMaxAltitude" Text="-" HorizontalOptions="Center"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

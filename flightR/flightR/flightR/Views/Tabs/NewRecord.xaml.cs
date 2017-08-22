@@ -1,10 +1,12 @@
 ﻿using AdvancedTimer.Forms.Plugin.Abstractions;
+using Android.Widget;
 using flightR.Models;
 using flightR.Provider;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
@@ -19,18 +21,26 @@ namespace flightR.Views.Tabs
         public int timerCounter { get; set; } = 0; //for text
 
         private ServiceManager manager = new ServiceManager();
-
         public Plugin.Geolocator.Abstractions.Position position { get; set; }
+
         public Record record { get; set; }
         public Models.Point point { get; set; }
+        public List<Models.Point> pointList = new List<Models.Point>();
         public MobileResult mobileresult { get; set; }
+
+        public DateTime dtLast { get; set; }
+        public DateTime dtStart { get; set; }
+        public TimeSpan span { get; set; }
 
         static IAdvancedTimer timer;
 
-        public NewRecord()
+        User user = new User();
+
+        public NewRecord(User _user)
         {
-            timer = DependencyService.Get<IAdvancedTimer>();
+            user = _user;
             InitializeComponent();
+            timer = DependencyService.Get<IAdvancedTimer>();
             stopTimerButton.IsVisible = false;
             MyMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(41.068044, 29.014540), Distance.FromKilometers(1)));
             var pin = new Pin
@@ -49,23 +59,40 @@ namespace flightR.Views.Tabs
             timer.startTimer();
             startTimerButton.IsVisible = false;
             stopTimerButton.IsVisible = true;
+            dtStart = DateTime.Now;
+
+            record = new Record //record oluştur
+            {
+                CreatedDate = DateTime.Now,
+                UserId = user.Id
+            };
+
+            dtStart = DateTime.Now;
         }
 
-        public void stopTimer(object sender, EventArgs e)
+        public async void stopTimer(object sender, EventArgs e)
         {
-            DisplayAlert("Success", "Record saved your list", "Ok", "Cancel");
+            await DisplayAlert("Success", "Record saved your list", "Ok", "Cancel");
             timer.stopTimer();
             timerCounter = 0;
-            position = null;
-            record = null;
-            mobileresult = null;
-            point = null;
-            lbllatitude.Text = 0.ToString();
-            lbllongitude.Text = 0.ToString();
+            
             lblaltitude.Text = 0.ToString();
             lblspeed.Text = 0.ToString();
             startTimerButton.IsVisible = true;
             stopTimerButton.IsVisible = false;
+            record.Duration = span.Hours + ":" + span.Minutes + ":" + span.Seconds;
+            await manager.Insert(record);
+            var lastRecord = await manager.GetLastRecord(user.Id);
+            foreach (var item in pointList)
+            {
+                item.RecordId = lastRecord.Id;
+                await manager.Insert(item);
+            }
+            pointList.Clear();
+            position = null;
+            record = null;
+            mobileresult = null;
+            point = null;
         }
 
         public async void timerElapsed(object sender, EventArgs e)
@@ -74,17 +101,13 @@ namespace flightR.Views.Tabs
             // her saniye bu fonksiyon çalışacak
             Xamarin.Forms.Device.BeginInvokeOnMainThread(async () =>
             {
-                //if (timerCounter == 1)
-                //{
-                //    record = new Record //record oluştur
-                //    {
-                //        CreatedDate = DateTime.Now,
-                //        UserId = 1
-                //    };
-                //    await manager.NewRecord(record);
-                //}
-                //await CreateNewPoint();
-                lblspeed.Text = timerCounter.ToString();
+                dtLast = new DateTime();
+                dtLast = DateTime.Now;
+                span = dtLast.Subtract(dtStart);
+                lblTimer.Text = span.Hours + ":" + span.Minutes + ":" + span.Seconds;
+                
+                if(timerCounter % 3 == 0)
+                    await CreateNewPoint();
             });
         }
 
@@ -124,9 +147,8 @@ namespace flightR.Views.Tabs
         private async Task CreateNewPoint()
         {
             //her saniye point oluşturacak
-            
             position = await GetCurrentLocation();
-            var record2 = await manager.GetLastRecord(1);
+            //var lastrecord = await manager.GetLastRecord(1);
 
             point = new Models.Point
             {
@@ -134,16 +156,11 @@ namespace flightR.Views.Tabs
                 Latitude = position.Latitude,
                 Longitude = position.Longitude,
                 Altitude = 15.154,
-                RecordId = record2.Id
+                RecordId = 0 //henüz record id yok
             };
-
-            lbllatitude.Text = position.Latitude.ToString();
-            lbllongitude.Text = position.Longitude.ToString();
-            lblaltitude.Text = position.Altitude.ToString();
+            pointList.Add(point);
             
-
-            //pointi db ye kaydet
-            //await manager.Insert(point);
+            lblaltitude.Text = position.Altitude.ToString();
         }
 
         private async Task<Plugin.Geolocator.Abstractions.Position> GetCurrentLocation()
@@ -180,17 +197,6 @@ namespace flightR.Views.Tabs
                 return null;
 
             return position;
-            //var output = string.Format("Time: {0} \nLat: {1} \nLong: {2} \nAltitude: {3} \nAltitude Accuracy: {4} \nAccuracy: {5} \nHeading: {6} \nSpeed: {7}",
-            //    position.Timestamp, position.Latitude, position.Longitude,
-            //    position.Altitude, position.AltitudeAccuracy, position.Accuracy, position.Heading, position.Speed);
-
-            //Debug.WriteLine(output);
-            //var locator = CrossGeolocator.Current;
-            //locator.DesiredAccuracy = 100;
-
-            //var position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1));
-
-            //return position;
         }
     }
 }

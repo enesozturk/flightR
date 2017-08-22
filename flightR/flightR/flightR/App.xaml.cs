@@ -1,4 +1,5 @@
 ﻿using flightR.Views;
+using flightR.Views.Authentication;
 using Xamarin.Forms;
 
 namespace flightR
@@ -9,8 +10,8 @@ namespace flightR
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
-            //MainPage = new FacebookPage();
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new Login());
         }
 
         protected override void OnStart()

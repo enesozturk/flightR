@@ -21,13 +21,18 @@ namespace flightR.Views.Modals
 
         private Record record { get; set; }
 
+        public double MaxSpeed { get; set; }
+        public double MaxAltitude { get; set; }
+
         public RecordDetailPage(Record _record)
         {
             InitializeComponent();
             record = _record;
             this.BackgroundColor = Color.White;
             GetPoints();
+
             lblRecordId.Text = record.Id.ToString();
+            
 
             flightSlider.Minimum = 0f;
             flightSlider.Value = 0;
@@ -68,13 +73,23 @@ namespace flightR.Views.Modals
 
             var firstMapPoint = points.FirstOrDefault();
 
-
             rdMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(firstMapPoint.Latitude, firstMapPoint.Longitude), Distance.FromKilometers(1)));
 
+            var maxspeed = points.Max(x => x.Speed).ToString();
+            var maxalt = points.Max(x => x.Altitude).ToString();
 
-            //sliderValue.Text = flightSlider.Value.ToString();
-            drawPoints(this.points, 0);
+            if (maxspeed != null && maxalt != null)
+            {
+                lblMaxSpeed.Text = "Maximum Speed: " + maxspeed.ToString();
+                lblMaxAltitude.Text = "Maximum Altitude: " + maxalt.ToString();
+            }
+            else
+            {
+                lblMaxSpeed.Text = "Maximum Speed: - ";
+                lblMaxAltitude.Text = "Maximum Altitude: - ";
+            }
         }
+
 
         private void FlightSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
@@ -84,29 +99,6 @@ namespace flightR.Views.Modals
             drawPoints(points, valueInt);
 
             sliderValue.Text = flightSlider.Value.ToString();
-            //if (value % 1 == 0)
-            //{
-            //    for (int i = 0; i < value; i++)
-            //    {
-            //        var pin = new Pin
-            //        {
-                        
-            //        }
-            //    }
-            //}
-
-
-            //if(e.NewValue == 0)
-            //{
-            //    sliderValue.Text = flightSlider.Value.ToString();
-            //    var firstMapPoint = points.FirstOrDefault();
-            //    rdMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(firstMapPoint.Latitude, firstMapPoint.Longitude), Distance.FromKilometers(1)));
-            //}
-            //if (e.NewValue == 1)
-            //{
-            //    sliderValue.Text = flightSlider.Value.ToString();
-            //    rdMap.MoveToRegion(MapSpan.FromCenterAndRadius(new Xamarin.Forms.Maps.Position(29.844883, 34.648433), Distance.FromKilometers(1)));
-            //}
         }
     }
 }

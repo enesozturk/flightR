@@ -84,6 +84,10 @@
     <Compile Include="Migrations\201708170856367_updateDb.Designer.cs">
       <DependentUpon>201708170856367_updateDb.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708210816009_addPropsToTables.cs" />
+    <Compile Include="Migrations\201708210816009_addPropsToTables.Designer.cs">
+      <DependentUpon>201708210816009_addPropsToTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708170856367_updateDb.resx">
       <DependentUpon>201708170856367_updateDb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708210816009_addPropsToTables.resx">
+      <DependentUpon>201708210816009_addPropsToTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

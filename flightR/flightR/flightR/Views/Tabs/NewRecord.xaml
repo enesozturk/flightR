@@ -30,13 +30,11 @@
             
             <Button x:Name="startTimerButton" Text="START" Clicked="startTimer"></Button>
             <Button x:Name="stopTimerButton" Text="STOP" Clicked="stopTimer"></Button>
+
+
+            <Label FontSize="Medium" Text="Duration" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblTimer" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             
-            <Label FontSize="Medium" Text="Latitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-            <Label x:Name="lbllatitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-
-            <Label FontSize="Medium" Text="Longitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-            <Label x:Name="lbllongitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
-
             <Label FontSize="Medium" Text="Altitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
             <Label x:Name="lblaltitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 

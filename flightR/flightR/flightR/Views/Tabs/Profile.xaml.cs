@@ -31,9 +31,10 @@ namespace flightR.Views.Tabs
             }
         }
 
-
-        public Profile()
+        User user = new User();
+        public Profile(User _user)
         {
+            user = _user;
             InitializeComponent();
             loadData();
         }
@@ -44,11 +45,11 @@ namespace flightR.Views.Tabs
             try
             {
                 model.Clear();
-                var records = await service.GetRecords();
+                var records = await service.GetRecords(user.Id);
                 foreach (Models.Record item in records)
                     model.Add(item);
 
-                lblCount.Text = model.Count.ToString() + "Record(s)";
+                lblCount.Text = model.Count.ToString() + " Record(s)";
                 recordList.ItemsSource = model;
                 recordList.ItemSelected += async (sender, e) =>
                 {
