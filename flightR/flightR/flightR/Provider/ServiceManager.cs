@@ -63,10 +63,10 @@ namespace flightR.Provider
         }
 
         // kayıtları getir
-        public async Task<IEnumerable<Record>> GetRecords()
+        public async Task<IEnumerable<Record>> GetRecords(int userId)
         {
             HttpClient client = await GetClient();
-            var result = await client.GetStringAsync(Url + "record/getall/1");
+            var result = await client.GetStringAsync(Url + "record/getall/" + userId);
             var mobileResult = JsonConvert.DeserializeObject<MobileResult>(result);
             return JsonConvert.DeserializeObject<IEnumerable<Record>>
                 (mobileResult.Data.ToString());
@@ -76,9 +76,20 @@ namespace flightR.Provider
         public async Task<Record> GetLastRecord(int id)
         {
             HttpClient client = await GetClient();
-            var result = await client.GetStringAsync(Url + "record/getlast/"+id);
+            var result = await client.GetStringAsync(Url + "record/getlast/" + id);
             var record = JsonConvert.DeserializeObject<Record>(result);
             return record;
+        }
+
+        public async Task<User> GetUser(User user)
+        {
+            HttpClient client = await GetClient();
+            var url = Url + "user/users";
+            var serialized = JsonConvert.SerializeObject(user);
+            var response = client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(user), Encoding.UTF8, "application/json")).Result;
+            var userResult = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<User>(userResult);
+            return result;
         }
 
         // yeni kayıt olustur

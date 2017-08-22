@@ -9,30 +9,28 @@ using System.Web.Http;
 
 namespace fligtRWebAPI.Controllers
 {
-    [RoutePrefix("api/users")]
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         UnitOfWork work = new UnitOfWork();
 
         [Route("users")]
-        public MobileResult GetRecords()
+        [HttpPost]
+        public User GetUser(User user)
         {
-            MobileResult result = new MobileResult();
-            result.Result = true;
-
+            User userResult = new Model.User();
             try
             {
-                var records = work.RecordRepository.Get();
+                userResult = work.UserRepository.GetLast((x => x.UserName == user.UserName && x.Password == user.Password), null, "");
 
-                result.Data = records;
-                result.Message = "Success";
+
+                return userResult;
             }
             catch (Exception e)
             {
-                result.Result = false;
-                result.Message = e.Message;
+                
             }
-            return result;
+            return userResult;
         }
     }
 }

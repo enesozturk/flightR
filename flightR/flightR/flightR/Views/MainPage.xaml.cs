@@ -1,4 +1,5 @@
-﻿using flightR.Views.Tabs;
+﻿using flightR.Models;
+using flightR.Views.Tabs;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,16 +8,17 @@ namespace flightR.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : TabbedPage
     {
-        public MainPage()
+        User user = new User();
+        public MainPage(User _user)
         {
+            user = _user;
             InitializeComponent();
 
             ToolbarItems.Add(new ToolbarItem("Profile", null, () => { }));
-            ToolbarItems.Add(new ToolbarItem("Settings", null, () => { }));
 
-            Children.Add(new NewRecord());
-            Children.Add(new Profile());
-            Children.Add(new Settings());
+            Children.Add(new NewRecord(user));
+            Children.Add(new Profile(user));
+            Children.Add(new Settings(user));
         }
     }
 }

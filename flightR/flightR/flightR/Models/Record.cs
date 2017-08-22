@@ -10,6 +10,8 @@ namespace flightR.Models
     {
         public int Id { get; set; }
         public System.DateTime CreatedDate { get; set; }
+        public float Distance { get; set; }
+        public string Duration { get; set; }
         public int UserId { get; set; } = 1;
     }
 }

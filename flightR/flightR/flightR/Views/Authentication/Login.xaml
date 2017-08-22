@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="flightR.Views.Authentication.Login">
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="50" VerticalOptions="Center">
+            <Image Source="flightr.png" VerticalOptions="FillAndExpand"></Image>
+            <Entry x:Name="entryUsername" Placeholder="Username" Text="enesozturk"></Entry>
+            <Entry x:Name="entryPassword" Placeholder="Password" IsPassword="True" Text="Enes.123"></Entry>
+            <Button x:Name="buttonLogin" Text="Log In" TextColor="White" BackgroundColor="#0b78c5" Clicked="ButtonLogin_Clicked"></Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
