@@ -17,15 +17,17 @@ namespace Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Record()
         {
-            this.List = new HashSet<List>();
+            this.Point = new HashSet<Point>();
         }
     
         public int Id { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public double Altitude { get; set; }
-    
+        public System.DateTime CreatedDate { get; set; }
+        public float Distance { get; set; }
+        public string Duration { get; set; }
+        public int UserId { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<List> List { get; set; }
+        public virtual ICollection<Point> Point { get; set; }
+        
     }
 }

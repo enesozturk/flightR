@@ -18,41 +18,30 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+        <StackLayout x:Name="stack1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
 
             <maps:Map HorizontalOptions="FillAndExpand"
             x:Name="MyMap"
-            IsShowingUser="true"
+            HasScrollEnabled="True"
+            HasZoomEnabled="True"
+            IsShowingUser="true" 
             MapType="Hybrid"
         />
-
-            <Button
-                x:Name="recordButton"
-                Text="START RECORD">
-            </Button>
             
-            <Label Text="Speed"
-           HorizontalOptions="StartAndExpand" />
-            <Label Text="Altitude"
-           HorizontalOptions="StartAndExpand" />
+            <Button x:Name="startTimerButton" Text="START" Clicked="startTimer"></Button>
+            <Button x:Name="stopTimerButton" Text="STOP" Clicked="stopTimer"></Button>
+
+
+            <Label FontSize="Medium" Text="Duration" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblTimer" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            
+            <Label FontSize="Medium" Text="Altitude" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblaltitude" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+            <Label FontSize="Medium" Text="Speed" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="lblspeed" FontSize="Large" FontAttributes="Bold" Text="---" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
 
         </StackLayout>
     </ContentPage.Content>
 
-    <!--<ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Large"></Setter>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout WidthRequest="">
-            <Label x:Name="lblLat" Text="Lat: 0.000000"></Label>
-            <Label x:Name="lblLong" Text="Long: 0.000000"></Label>
-            <Label x:Name="lblAlt" Text="Alt: 0.000000"></Label>
-            <Label x:Name="lblCounter" Text="Counter: "></Label>
-            <Button Text="Start Record" Clicked="btnRecord"></Button>
-        </StackLayout>
-    </ContentPage.Content>-->
 </ContentPage>

@@ -10,8 +10,9 @@ namespace Repo
     {
         private static readonly Context context = new Context();
 
-        private GenericRepository<Record> _record;
         private GenericRepository<Point> _point;
+        private GenericRepository<Record> _record;
+        private GenericRepository<User> _user;
 
         public GenericRepository<Point> PointRepository
         {
@@ -34,6 +35,18 @@ namespace Repo
                     this._record = new GenericRepository<Record>(context);
                 }
                 return _record;
+            }
+        }
+
+        public GenericRepository<User> UserRepository
+        {
+            get
+            {
+                if (this._user == null)
+                {
+                    this._user = new GenericRepository<User>(context);
+                }
+                return _user;
             }
         }
 

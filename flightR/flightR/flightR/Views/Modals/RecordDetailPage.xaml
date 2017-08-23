@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="flightR.Views.Modals.RecordDetailPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label x:Name="lblRecordId" Text="Id"></Label>
+            <maps:Map HorizontalOptions="FillAndExpand"
+                x:Name="rdMap"
+                HasScrollEnabled="True"
+                HasZoomEnabled="True"
+                IsShowingUser="true" 
+                MapType="Hybrid"
+                />
+            <Slider x:Name="flightSlider"/>
+            <Label x:Name="sliderValue" Text="-" HorizontalOptions="Center"></Label>
+            <Label x:Name="lblMaxSpeed" Text="-" HorizontalOptions="Center"></Label>
+            <Label x:Name="lblMaxAltitude" Text="-" HorizontalOptions="Center"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

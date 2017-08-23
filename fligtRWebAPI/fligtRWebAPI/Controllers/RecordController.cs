@@ -2,6 +2,7 @@
 using System.Web.Http;
 using Model;
 using Repo;
+using System.Linq;
 
 namespace fligtRWebAPI.Controllers
 {
@@ -9,16 +10,17 @@ namespace fligtRWebAPI.Controllers
     public class RecordController : ApiController
     {
         UnitOfWork work = new UnitOfWork();
-        flighREntities db = new flighREntities();
-        [Route("getall")]
-        public MobileResult GetRecords()
+
+        [Route("getall/{id}")]// kayıları getir
+        public MobileResult GetRecords(int id)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
 
             try
             {
-                var records = work.RecordRepository.Get();
+                var records = work.RecordRepository.Get(x=>x.UserId == id, q=>q.OrderByDescending(x=>x.CreatedDate), "");
+                
 
                 result.Data = records;
                 result.Message = "Success";
@@ -32,7 +34,7 @@ namespace fligtRWebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("getbyid")]
+        [Route("getbyid")] //id ile kayıt getir
         public MobileResult GetRecords(Record model)
         {
             MobileResult result = new MobileResult();
@@ -53,8 +55,8 @@ namespace fligtRWebAPI.Controllers
         }
 
         [HttpPost]
-        [Route("insert")]
-        public MobileResult InsertStudent(Record model)
+        [Route("insert")] //kayıt ekle
+        public MobileResult InsertRecord(Record model)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
@@ -62,7 +64,7 @@ namespace fligtRWebAPI.Controllers
             {
                 work.RecordRepository.Insert(model);
                 work.Save();
-                result.Message = "New Student has been added";
+                result.Message = "New Record created";
             }
             catch (Exception ex)
             {
@@ -71,9 +73,17 @@ namespace fligtRWebAPI.Controllers
             }
             return result;
         }
+
+        [Route("getlast/{id}")]  //son eklenen kaydı getir
+        public Record GetLast(int id)
+        {
+            var record = work.RecordRepository.GetLast(x => x.UserId == id, q => q.OrderByDescending(x => x.CreatedDate), "");
+            return record;
+        }
+
         [HttpPost]
-        [Route("delete")]
-        public MobileResult DeleteStudent(Record model)
+        [Route("delete")] //kayıt sil
+        public MobileResult DeleteRecord(Record model)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
@@ -82,7 +92,7 @@ namespace fligtRWebAPI.Controllers
                 //Logging
                 work.RecordRepository.Delete(model.Id);
                 work.Save();
-                result.Message = "Selected Student has been deleted";
+                result.Message = "Selected Record has been deleted";
             }
             catch (Exception ex)
             {
@@ -91,9 +101,10 @@ namespace fligtRWebAPI.Controllers
             }
             return result;
         }
+
         [HttpPost]
-        [Route("update")]
-        public MobileResult UpdateStudent(Record model)
+        [Route("update")]  //kayıt güncelle
+        public MobileResult UpdateRecord(Record model)
         {
             MobileResult result = new MobileResult();
             result.Result = true;
@@ -101,11 +112,10 @@ namespace fligtRWebAPI.Controllers
             {
                 var record = GetRecords(model);
                 var recordModel = (Record)record.Data;
-                recordModel.Latitude = model.Latitude;
-                recordModel.Longitude = model.Longitude;
+                recordModel.CreatedDate = DateTime.Now;
                 work.RecordRepository.Update(recordModel);
                 work.Save();
-                result.Message = "Selected Student has been updated";
+                result.Message = "Selected Record has been updated";
             }
             catch (Exception ex)
             {

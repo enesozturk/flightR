@@ -9,8 +9,9 @@ namespace flightR.Models
     public class Record
     {
         public int Id { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public double Altitude { get; set; }
+        public System.DateTime CreatedDate { get; set; }
+        public float Distance { get; set; }
+        public string Duration { get; set; }
+        public int UserId { get; set; } = 1;
     }
 }

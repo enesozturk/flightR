@@ -1,16 +1,19 @@
 ﻿using flightR.Views;
+using flightR.Views.Authentication;
+using flightR.Views.Deneme;
 using Xamarin.Forms;
 
 namespace flightR
 {
     public partial class App : Application
     {
-        public static string DbName { get; set; } = "flightRDB.db3";
         public App()
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+            //MainPage = new NavigationPage(new MainPage());
+            MainPage = new NavigationPage(new Login());
+            //MainPage = new locationpage();
         }
 
         protected override void OnStart()
