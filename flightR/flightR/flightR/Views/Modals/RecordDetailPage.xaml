@@ -5,7 +5,6 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="lblRecordId" Text="Id"></Label>
             <maps:Map HorizontalOptions="FillAndExpand"
                 x:Name="rdMap"
                 HasScrollEnabled="True"
@@ -15,6 +14,7 @@
                 />
             <Slider x:Name="flightSlider"/>
             <Label x:Name="sliderValue" Text="-" HorizontalOptions="Center"></Label>
+            <Label x:Name="lblDuration" Text="-" HorizontalOptions="Center"></Label>
             <Label x:Name="lblMaxSpeed" Text="-" HorizontalOptions="Center"></Label>
             <Label x:Name="lblMaxAltitude" Text="-" HorizontalOptions="Center"></Label>
         </StackLayout>

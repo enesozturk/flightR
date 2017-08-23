@@ -31,11 +31,10 @@ namespace flightR.Views.Modals
             this.BackgroundColor = Color.White;
             GetPoints();
 
-            lblRecordId.Text = record.Id.ToString();
-
             flightSlider.Minimum = 0f;
             flightSlider.Value = 0;
             sliderValue.Text = flightSlider.Value.ToString();
+            lblDuration.Text = "Duration: " + record.Duration.ToString();
         }
 
         public void drawPoints(ObservableCollection<Models.Point> list, int count)
@@ -47,8 +46,8 @@ namespace flightR.Views.Modals
                     var pin = new Pin
                     {
                         Type = PinType.Place,
-                        Address = "Pin1",
-                        Label = "Label",
+                        Address = "Alt: " + list[i].Altitude.ToString() + " m",
+                        Label = "Speed: " + list[i].Speed.ToString() + " km/h",
                         Position = new Position(list[i].Latitude, list[i].Longitude)
                     };
                     rdMap.Pins.Add(pin);
@@ -79,8 +78,8 @@ namespace flightR.Views.Modals
 
             if (maxspeed != null && maxalt != null)
             {
-                lblMaxSpeed.Text = "Maximum Speed: " + maxspeed.ToString();
-                lblMaxAltitude.Text = "Maximum Altitude: " + maxalt.ToString();
+                lblMaxSpeed.Text = "Maximum Speed: " + maxspeed.ToString() + " km/h";
+                lblMaxAltitude.Text = "Maximum Altitude: " + maxalt.ToString() + " m";
             }
             else
             {

@@ -110,6 +110,17 @@ namespace flightR.Provider
             return await Process(model, "point/insert");
         }
 
+        public async Task<MobileResult> InsertMany(List<Point> model)
+        {
+            HttpClient client = await GetClient();
+            var url = Url + "point/insertmany";
+            var serialized = JsonConvert.SerializeObject(model);
+            var response = client.PostAsync(url, new StringContent(JsonConvert.SerializeObject(model), Encoding.UTF8, "application/json")).Result;
+            var mobileResult = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<MobileResult>(mobileResult);
+            return result;
+        }
+
         public async Task<MobileResult> Delete(Point model)
         {
             return await Process(model, "delete");
