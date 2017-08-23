@@ -32,7 +32,6 @@ namespace flightR.Views.Modals
             GetPoints();
 
             lblRecordId.Text = record.Id.ToString();
-            
 
             flightSlider.Minimum = 0f;
             flightSlider.Value = 0;

@@ -38,7 +38,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CustomRenderers\MyEntryRenderer.cs" />
     <Compile Include="Data\Recorder.cs" />
     <Compile Include="Helper\IDeviceHelper.cs" />
     <Compile Include="Models\FacebookModel.cs" />

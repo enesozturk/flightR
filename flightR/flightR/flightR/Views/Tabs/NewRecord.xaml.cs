@@ -72,7 +72,6 @@ namespace flightR.Views.Tabs
 
         public async void stopTimer(object sender, EventArgs e)
         {
-            await DisplayAlert("Success", "Record saved your list", "Ok", "Cancel");
             timer.stopTimer();
             timerCounter = 0;
             
@@ -93,6 +92,7 @@ namespace flightR.Views.Tabs
             record = null;
             mobileresult = null;
             point = null;
+            await DisplayAlert("Success", "Record saved your list", "Ok", "Cancel");
         }
 
         public async void timerElapsed(object sender, EventArgs e)
@@ -105,9 +105,22 @@ namespace flightR.Views.Tabs
                 dtLast = DateTime.Now;
                 span = dtLast.Subtract(dtStart);
                 lblTimer.Text = span.Hours + ":" + span.Minutes + ":" + span.Seconds;
-                
-                if(timerCounter % 3 == 0)
-                    await CreateNewPoint();
+
+                position = await GetCurrentLocation();
+                //var lastrecord = await manager.GetLastRecord(1);
+
+                point = new Models.Point
+                {
+                    Id = 0,
+                    Latitude = position.Latitude,
+                    Longitude = position.Longitude,
+                    Altitude = 15.154,
+                    RecordId = 0 //henüz record id yok
+                };
+                pointList.Add(point);
+
+                lblaltitude.Text = Math.Round(position.Altitude, 2).ToString() + " m";
+                lblspeed.Text = Math.Round(position.Speed, 2).ToString() + " km/h";
             });
         }
 
@@ -171,19 +184,19 @@ namespace flightR.Views.Tabs
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 100;
 
-                position = await locator.GetLastKnownLocationAsync();
+                //position = await locator.GetLastKnownLocationAsync();
 
-                if (position != null)
-                {
-                    //got a cahched position, so let's use it.
-                    return position;
-                }
+                //if (position != null)
+                //{
+                //    //got a cahched position, so let's use it.
+                //    return position;
+                //}
 
-                if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
-                {
-                    //not available or enabled
-                    //return;
-                }
+                //if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
+                //{
+                //    //not available or enabled
+                //    //return;
+                //}
 
                 position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1), null, true);
 
