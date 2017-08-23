@@ -1,5 +1,6 @@
 ﻿using flightR.Views;
 using flightR.Views.Authentication;
+using flightR.Views.Deneme;
 using Xamarin.Forms;
 
 namespace flightR
@@ -12,6 +13,7 @@ namespace flightR
 
             //MainPage = new NavigationPage(new MainPage());
             MainPage = new NavigationPage(new Login());
+            //MainPage = new locationpage();
         }
 
         protected override void OnStart()
