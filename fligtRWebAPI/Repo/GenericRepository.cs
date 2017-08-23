@@ -5,6 +5,7 @@ using Model;
 using System;
 using System.Linq.Expressions;
 using Data;
+using System.Collections.Generic;
 
 namespace Repo
 {
@@ -92,6 +93,11 @@ namespace Repo
         public void Insert(TEntity entity)
         {
             dbSet.Add(entity);
+        }
+
+        public void InsertMany(List<TEntity> entityList)
+        {
+            dbSet.AddRange(entityList);
         }
 
         public void Update(TEntity entityToUpdate)

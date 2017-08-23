@@ -1,6 +1,5 @@
 ﻿using flightR.Views;
 using flightR.Views.Authentication;
-using flightR.Views.Deneme;
 using Xamarin.Forms;
 
 namespace flightR
