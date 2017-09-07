@@ -53,5 +53,25 @@ namespace fligtRWebAPI.Controllers
             }
             return result;
         }
+
+        [HttpPost]
+        [Route("insertmany")]
+        public MobileResult InsertMany(List<Point> pointList)
+        {
+            MobileResult result = new MobileResult();
+            result.Result = true;
+            try
+            {
+                work.PointRepository.InsertMany(pointList);
+                work.Save();
+                result.Message = "New Records created";
+            }
+            catch (Exception ex)
+            {
+                result.Result = false;
+                result.Message = ex.Message;
+            }
+            return result;
+        }
     }
 }

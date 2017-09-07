@@ -2,6 +2,7 @@
 using Android.Widget;
 using flightR.Models;
 using flightR.Provider;
+using flightR.Utils;
 using Plugin.Geolocator;
 using Plugin.Geolocator.Abstractions;
 using System;
@@ -82,11 +83,7 @@ namespace flightR.Views.Tabs
             record.Duration = span.Hours + ":" + span.Minutes + ":" + span.Seconds;
             await manager.Insert(record);
             var lastRecord = await manager.GetLastRecord(user.Id);
-            foreach (var item in pointList)
-            {
-                item.RecordId = lastRecord.Id;
-                await manager.Insert(item);
-            }
+            await manager.InsertMany(pointList);
             pointList.Clear();
             position = null;
             record = null;
@@ -114,7 +111,8 @@ namespace flightR.Views.Tabs
                     Id = 0,
                     Latitude = position.Latitude,
                     Longitude = position.Longitude,
-                    Altitude = 15.154,
+                    Altitude = position.Altitude,
+                    Speed = position.Speed,
                     RecordId = 0 //henüz record id yok
                 };
                 pointList.Add(point);
@@ -183,20 +181,6 @@ namespace flightR.Views.Tabs
             {
                 var locator = CrossGeolocator.Current;
                 locator.DesiredAccuracy = 100;
-
-                //position = await locator.GetLastKnownLocationAsync();
-
-                //if (position != null)
-                //{
-                //    //got a cahched position, so let's use it.
-                //    return position;
-                //}
-
-                //if (!locator.IsGeolocationAvailable || !locator.IsGeolocationEnabled)
-                //{
-                //    //not available or enabled
-                //    //return;
-                //}
 
                 position = await locator.GetPositionAsync(TimeSpan.FromSeconds(1), null, true);
 
